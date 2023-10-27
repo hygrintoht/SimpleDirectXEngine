@@ -1,2 +1,3 @@
 Name: Francis Santonia
-Main Function Loctation: \GDENG03_DX\GDENG03_DX\main.cpp
+Build Location: Build\Debug\GDENG03DX.exe
+Main Function Loctation: \GDENG03DX\GDENG03DX\main.cpp
