@@ -10,7 +10,8 @@ class meshObject : public gameObject
 {
 public:
 	meshObject();
-	meshObject(std::string file_path);
+	meshObject(std::string name);
+	meshObject(std::string name, std::string file_path);
 	~meshObject() override;
 
 	void update(matrix4x4 world_camera_temp, float top, float bottom, float right, float left) override;

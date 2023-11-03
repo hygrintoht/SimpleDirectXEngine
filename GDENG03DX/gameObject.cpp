@@ -11,6 +11,11 @@ gameObject::gameObject()
 {
 }
 
+gameObject::gameObject(std::string name)
+{
+	m_name = name;
+}
+
 gameObject::~gameObject()
 {
 }
@@ -36,67 +41,11 @@ void gameObject::release()
 	m_vertex_buffer->release();
 	m_index_buffer->release();
 	m_constant_buffer->release();
-	//delete this
+	//delete this;
 }
 
 void gameObject::update(matrix4x4 world_camera_temp, float top, float bottom, float right, float left)
 {
-	/*
-	constant cc;
-	cc.m_time = ::GetTickCount();
-
-	matrix4x4 transform;
-	transform.setIdentity();
-
-	// world space
-	cc.m_world.setIdentity();
-
-	transform.setIdentity();
-	cc.m_world *= transform;
-
-	transform.setIdentity();
-	cc.m_world *= transform;
-
-	transform.setIdentity();
-	cc.m_world *= transform;
-
-	cc.m_world *= m_transform;
-
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			std::cout << m_transform.m_mat[i][j] << " ";
-		}
-		std::cout << "\n";
-	}
-
-	// view space
-	cc.m_view = world_camera_temp;
-
-	// projection
-	int width = (right - left);
-	int height = (bottom - top);
-
-	cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
-
-	m_constant_buffer->update(graphicsEngine::get()->getImmediateDeviceContext(), &cc);
-	
-	// default update for game objects
-	constant cc;
-	cc.m_time = ::GetTickCount();
-	cc.m_world.setIdentity();
-	cc.m_world *= m_transform;
-
-	cc.m_view = world_camera_temp;
-
-	int width = (right - left);
-	int height = (bottom - top);
-
-	cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
-
-	m_constant_buffer->update(graphicsEngine::get()->getImmediateDeviceContext(), &cc);
-	*/
 }
 
 void gameObject::draw()
@@ -114,6 +63,11 @@ void gameObject::loadVertexBuffer(void* shader_byte_code, size_t size_byte_shade
 constantBuffer* gameObject::getConstantBuffer() const
 {
 	return m_constant_buffer;
+}
+
+std::string gameObject::getName()
+{
+	return m_name;
 }
 
 void gameObject::setPosition(vector3 position)

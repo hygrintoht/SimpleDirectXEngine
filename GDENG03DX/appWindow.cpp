@@ -18,6 +18,7 @@
 #include "pixelShader.h"
 #include "Windows.h"
 #include "engineTime.h"
+#include "gameObjectManager.h"
 #include "inputSystem.h"
 
 #include "UIManager.h"
@@ -26,7 +27,8 @@ appWindow::appWindow()
 {
 	for(int i = 0; i < m_cube_objects_size; i++)
 	{
-		cubeObject cube_object;
+		const std::string cube_name = "cube" + std::to_string(i);
+		cubeObject cube_object(cube_name);
 		m_cube_objects_list.push_back(cube_object);
 	}
 }
@@ -42,6 +44,7 @@ void appWindow::onCreate()
 	window::onCreate();						//create window
 	inputSystem::get()->addListener(this);	// add app window as listener (removed because on focus handles that)
 	graphicsEngine::get()->init();			//initialize engine
+	gameObjectManager::get();
 
 	m_swap_chain = graphicsEngine::get()->createSwapChain(); // initialize swap chain
 
@@ -100,7 +103,8 @@ void appWindow::onCreate()
 	// multiple cubes
 	for (int i = 0; i < m_cube_objects_size; i++)
 	{
-		m_cube_objects_list[i].init();
+		gameObjectManager::get()->addObject(&m_cube_objects_list[i]);
+		//m_cube_objects_list[i].init();
 		m_cube_objects_list[i].setPosition(vector3(randFZeroToOne() - 0.5f, randFZeroToOne() - 0.5f, randFZeroToOne() - 0.5f));
 		m_cube_objects_list[i].setScale(vector3(1.0f, 1.0f, 1.0f));
 		m_cube_objects_list[i].changeSpeed(randomFloat(0.5f, 0.5f));
@@ -246,15 +250,18 @@ void appWindow::onUpdate()
 	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, test4.getConstantBuffer());
 	test4.draw();
 	*/
-	
+
+	gameObjectManager::get()->update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
+	gameObjectManager::get()->draw(m_vertex_shader, m_pixel_shader);
+	/*
 	for (int i = 0; i < m_cube_objects_size; i++)
 	{
-		m_cube_objects_list[i].update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left); //update object
-		graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, m_cube_objects_list[i].getConstantBuffer()); // set constant buffer to object constant buffer
-		graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, m_cube_objects_list[i].getConstantBuffer()); // set constant buffer to object constant buffer
-		m_cube_objects_list[i].draw(); // draw object
+		//m_cube_objects_list[i].update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left); //update object
+		//graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, m_cube_objects_list[i].getConstantBuffer()); // set constant buffer to object constant buffer
+		//graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, m_cube_objects_list[i].getConstantBuffer()); // set constant buffer to object constant buffer
+		//m_cube_objects_list[i].draw(); // draw object
 	}
-	
+	*/
 	
 
 	// Rendering

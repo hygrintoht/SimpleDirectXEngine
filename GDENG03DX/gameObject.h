@@ -1,6 +1,7 @@
 #pragma once
 #include "mathUtils.h"
 #include "vector"
+#include "string"
 
 class vertexBuffer;
 class indexBuffer;
@@ -10,6 +11,7 @@ class gameObject
 {
 public:
 	gameObject();
+	gameObject(std::string name);
 	virtual ~gameObject();
 
 	virtual void init();
@@ -20,6 +22,8 @@ public:
 
 	void loadVertexBuffer(void* shader_byte_code, size_t size_byte_shader); // load vertex buffer to object
 	constantBuffer* getConstantBuffer() const;
+
+	std::string getName();
 
 	matrix4x4 m_transform = matrix4x4::identityMatrix(); // transform of object(public);
 
@@ -34,6 +38,8 @@ private:
 	indexBuffer* m_index_buffer;
 
 protected:
+	std::string m_name = "";
+
 	constantBuffer* m_constant_buffer;
 
 	//scene data

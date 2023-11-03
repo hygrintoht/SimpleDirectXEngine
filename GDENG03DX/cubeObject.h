@@ -9,6 +9,7 @@ class cubeObject : public gameObject
 {
 public:
 	cubeObject();
+	cubeObject(std::string name);
 	~cubeObject() override;
 
 	void update(matrix4x4 world_camera_temp, float top, float bottom, float right, float left) override;

@@ -134,6 +134,7 @@
     <ClCompile Include="deviceContext.cpp" />
     <ClCompile Include="engineTime.cpp" />
     <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="gameObjectManager.cpp" />
     <ClCompile Include="graphicsEngine.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
     <ClCompile Include="Imgui\imgui_demo.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="deviceContext.h" />
     <ClInclude Include="engineTime.h" />
     <ClInclude Include="gameObject.h" />
+    <ClInclude Include="gameObjectManager.h" />
     <ClInclude Include="graphicsEngine.h" />
     <ClInclude Include="Imgui\imconfig.h" />
     <ClInclude Include="Imgui\imgui.h" />

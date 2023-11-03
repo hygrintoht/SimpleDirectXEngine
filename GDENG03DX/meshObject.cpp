@@ -7,17 +7,20 @@
 
 meshObject::meshObject()
 {
-	
 }
 
-meshObject::meshObject(std::string file_path)
+meshObject::meshObject(std::string name) : gameObject(name)
 {
+}
+
+meshObject::meshObject(std::string name, std::string file_path) : gameObject(name)
+{
+
 	loadObjFileData(file_path);
 }
 
 meshObject::~meshObject()
 {
-	
 }
 
 void meshObject::update(matrix4x4 world_camera_temp, float top, float bottom, float right, float left)

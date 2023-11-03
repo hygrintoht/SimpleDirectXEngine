@@ -64,8 +64,20 @@
     <Filter Include="GameEngine\GameObject\MeshObject">
       <UniqueIdentifier>{b4bd94e1-cbca-49a6-af2d-b5d95fe7ad06}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Imgui">
+    <Filter Include="GameEngine\UserInterface">
+      <UniqueIdentifier>{989f732f-4970-4dad-80be-205cf6fbc9c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{34fec9b0-7927-496e-8bbf-f59104a39012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals">
+      <UniqueIdentifier>{544607cc-1f4f-4a53-8073-799341b59874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\Imgui">
       <UniqueIdentifier>{d044e93a-d12c-4bf4-8d33-34d6468913d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\Tinyobjloader">
+      <UniqueIdentifier>{3e54a88a-6bdd-45ee-8c36-dfde4d430ee0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,29 +132,34 @@
     <ClCompile Include="meshObject.cpp">
       <Filter>GameEngine\GameObject\MeshObject</Filter>
     </ClCompile>
-    <ClCompile Include="UIScreenAbstract.cpp" />
-    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="Imgui\imgui.cpp">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Imgui\imgui_demo.cpp">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Imgui\imgui_draw.cpp">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Imgui\imgui_impl_dx11.cpp">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Imgui\imgui_impl_win32.cpp">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Imgui\imgui_tables.cpp">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Imgui\imgui_widgets.cpp">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>GameEngine\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="UIScreenAbstract.cpp">
+      <Filter>GameEngine\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="gameObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -211,36 +228,47 @@
     <ClInclude Include="point.h">
       <Filter>GameEngine\Math</Filter>
     </ClInclude>
-    <ClInclude Include="tiny_obj_loader.h" />
-    <ClInclude Include="UIScreenAbstract.h" />
-    <ClInclude Include="UIManager.h" />
     <ClInclude Include="Imgui\imconfig.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Imgui\imgui.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Imgui\imgui_impl_dx11.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Imgui\imgui_impl_win32.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Imgui\imgui_internal.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Imgui\imstb_rectpack.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Imgui\imstb_textedit.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Imgui\imstb_truetype.h">
-      <Filter>Imgui</Filter>
+      <Filter>Externals\Imgui</Filter>
     </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>GameEngine\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="UIScreenAbstract.h">
+      <Filter>GameEngine\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="tiny_obj_loader.h">
+      <Filter>Externals\Tinyobjloader</Filter>
+    </ClInclude>
+    <ClInclude Include="gameObjectManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="pixelShader.hlsl" />
-    <FxCompile Include="vertexShader.hlsl" />
+    <FxCompile Include="pixelShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="vertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
