@@ -101,8 +101,6 @@ void meshObject::loadObjFileData(std::string file_path)
 
 void meshObject::loadObjDataToMemory()
 {
-	//std::vector<glm::vec3> vertices;
-	//std::vector<GLuint> indices;
 
 	for (int i = 0; i < this->attrib->vertices.size() / 3; i++) 
 	{
@@ -129,6 +127,7 @@ void meshObject::loadObjDataToMemory()
 			m_index_list.push_back(idx);
 		}
 	}
+	std::cout << "loaded obj data to mem" << std::endl;
 }
 
 void meshObject::changeAnimationType(int animation_type)

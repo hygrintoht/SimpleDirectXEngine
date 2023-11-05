@@ -17,6 +17,21 @@ gameObjectManager* gameObjectManager::get() {
 	return &game_object_manager;
 }
 
+gameObject* gameObjectManager::findObjectByName(std::string name)
+{
+	return m_game_object_table[name];
+}
+
+std::vector<gameObject*> gameObjectManager::getAllObjects()
+{
+	return m_game_object_list;
+}
+
+std::vector<gameObject*>* gameObjectManager::getGameObjectList()
+{
+	return &m_game_object_list;
+}
+
 void gameObjectManager::addObject(gameObject* game_object)
 {
 	std::cout << game_object->getName() << " added" << std::endl;
@@ -36,6 +51,11 @@ void gameObjectManager::deleteObject(std::string name)
 
 	m_game_object_table[name]->release();	// release game object
 	m_game_object_table.erase(name);	// remove from table
+}
+
+void gameObjectManager::deleteObject(gameObject* game_object)
+{	
+	deleteObject(game_object->getName());
 }
 
 void gameObjectManager::deleteAllObjects()
@@ -69,3 +89,17 @@ void gameObjectManager::draw(vertexShader* vertex_shader, pixelShader* pixel_sha
 	}
 }
 
+void gameObjectManager::setSelectedObject(std::string name)
+{
+	m_selected_object = m_game_object_table[name];
+}
+
+void gameObjectManager::setSelectedObject(gameObject* game_object)
+{
+	m_selected_object = game_object;
+}
+
+gameObject* gameObjectManager::getSelectedObject()
+{
+	return m_selected_object;
+}

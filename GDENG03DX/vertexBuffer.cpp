@@ -22,7 +22,6 @@ bool vertexBuffer::load(void* list_vertices, UINT size_vertex, UINT size_list, v
 	if (m_buffer) m_buffer->Release();
 	if (m_layout) m_layout->Release();
 
-
 	D3D11_BUFFER_DESC buff_desc = {};
 	buff_desc.Usage = D3D11_USAGE_DEFAULT;
 	buff_desc.ByteWidth = size_vertex * size_list;

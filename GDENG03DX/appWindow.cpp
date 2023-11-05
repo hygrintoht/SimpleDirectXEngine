@@ -64,22 +64,29 @@ void appWindow::onCreate()
 	test0.changeAnimationType(-1.0f);
 	*/
 
-	test0.init();
+	//test0.init();
 	test0.setPosition(vector3(0, 0, 0));
 	test0.setScale(vector3(1.0f, 1.0f, 1.0f));
 	test0.changeSpeed(randomFloat(0.5f, 0.5f));
 
+	test0.setName("test0");
+
+	gameObjectManager::get()->addObject(&test0);
+
 	temp = "cube.obj";
 	test1.loadObjFileData(temp);
-	test1.loadObjDataToMemory();
 	test1.init();
 	test1.setPosition(vector3(-1.5f, 1.0f, -3.0f));
 	test1.setScale(vector3(1.0f, 1.0f, 1.0f));
 	test1.changeAnimationType(-1);
 
+	test1.setName("meshCube");
+
+	gameObjectManager::get()->addObject(&test1);
+
 	temp = "cube.obj";
 	test2.loadObjFileData(temp);
-	test2.loadObjDataToMemory();
+	//test2.loadObjDataToMemory();
 	test2.init();
 	test2.setPosition(vector3(0, 1.0f, 0));
 	test2.setScale(vector3(1.0f, 1.0f, 1.0f));
@@ -87,7 +94,7 @@ void appWindow::onCreate()
 
 	temp = "cube.obj";
 	test3.loadObjFileData(temp);
-	test3.loadObjDataToMemory();
+	//test3.loadObjDataToMemory();
 	test3.init();
 	test3.setPosition(vector3(2.6f,1.0f,2.0f));
 	test3.setScale(vector3(1.0f, 1.0f, 1.0f));
@@ -95,7 +102,7 @@ void appWindow::onCreate()
 
 	temp = "plane.obj";
 	test4.loadObjFileData(temp);
-	test4.loadObjDataToMemory();
+	//test4.loadObjDataToMemory();
 	test4.init();
 	test4.setPosition(vector3(0, 0.0f, 0));
 	test4.setScale(vector3(10.0f, 10.0f, 10.0f));
@@ -103,7 +110,7 @@ void appWindow::onCreate()
 	// multiple cubes
 	for (int i = 0; i < m_cube_objects_size; i++)
 	{
-		gameObjectManager::get()->addObject(&m_cube_objects_list[i]);
+		//gameObjectManager::get()->addObject(&m_cube_objects_list[i]);
 		//m_cube_objects_list[i].init();
 		m_cube_objects_list[i].setPosition(vector3(randFZeroToOne() - 0.5f, randFZeroToOne() - 0.5f, randFZeroToOne() - 0.5f));
 		m_cube_objects_list[i].setScale(vector3(1.0f, 1.0f, 1.0f));
@@ -120,7 +127,9 @@ void appWindow::onCreate()
 	graphicsEngine::get()->compileVertexShader(L"vertexShader.hlsl", "main", &m_shader_byte_code, &m_size_shader);
 	m_vertex_shader = graphicsEngine::get()->createVertexShader(m_shader_byte_code, m_size_shader);
 	test0.loadVertexBuffer(m_shader_byte_code, m_size_shader);
+	
 	test1.loadVertexBuffer(m_shader_byte_code, m_size_shader);
+	/*
 	test2.loadVertexBuffer(m_shader_byte_code, m_size_shader);
 	test3.loadVertexBuffer(m_shader_byte_code, m_size_shader);
 	test4.loadVertexBuffer(m_shader_byte_code, m_size_shader);
@@ -128,6 +137,7 @@ void appWindow::onCreate()
 	{
 		m_cube_objects_list[i].loadVertexBuffer(m_shader_byte_code, m_size_shader);
 	}
+	*/
 	graphicsEngine::get()->releaseCompiledShader();
 
 	// compile pixel shader

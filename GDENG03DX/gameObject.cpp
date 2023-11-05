@@ -70,6 +70,11 @@ std::string gameObject::getName()
 	return m_name;
 }
 
+void gameObject::setName(std::string name)
+{
+	m_name = name;
+}
+
 void gameObject::setPosition(vector3 position)
 {
 	/*

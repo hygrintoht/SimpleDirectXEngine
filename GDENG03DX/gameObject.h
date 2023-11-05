@@ -24,6 +24,7 @@ public:
 	constantBuffer* getConstantBuffer() const;
 
 	std::string getName();
+	void setName(std::string name);
 
 	matrix4x4 m_transform = matrix4x4::identityMatrix(); // transform of object(public);
 
