@@ -6,6 +6,10 @@
 //#include "iostream"
 
 #include "uiTestScreen.h"
+#include "uiEngineProfiler.h"
+#include "uiInspector.h"
+#include "uiToolbar.h"
+#include "uiWorldOutliner.h"
 
 uiManager* uiManager::m_sharedInstance = nullptr;;
 
@@ -24,9 +28,21 @@ uiManager::uiManager(HWND windowHandle)
 	ImGui_ImplDX11_Init(graphicsEngine::get()->getD3D11Device(), graphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext());
 
 	// create and add all needed ui screens below then add each to the ui list(not ui table)
+
+	auto* ui_toolbar = new uiToolbar(ui_names.MENU_SCREEN);
+	m_ui_list.push_back(ui_toolbar);
+
 	auto* ui_test_screen = new uiTestScreen(ui_names.TEST_SCREEN);
 	m_ui_list.push_back(ui_test_screen);
 
+	auto* ui_engine_profiler = new uiEngineProfiler(ui_names.PROFILER_SCREEN);
+	m_ui_list.push_back(ui_engine_profiler);
+
+	auto* ui_inspector = new uiInspector(ui_names.INSPECTOR_SCREEN);
+	m_ui_list.push_back(ui_inspector);
+
+	auto* ui_world_outliner = new uiWorldOutliner(ui_names.HIERARCHY_SCREEN);
+	m_ui_list.push_back(ui_world_outliner);
 
 	// end of ui creation
 

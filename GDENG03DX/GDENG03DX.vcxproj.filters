@@ -183,9 +183,6 @@
     <ClCompile Include="uiManager.cpp">
       <Filter>GameEngine\UserInterface\UIManager</Filter>
     </ClCompile>
-    <ClCompile Include="uiScreenAbstract.cpp">
-      <Filter>GameEngine\UserInterface\UIScreen</Filter>
-    </ClCompile>
     <ClCompile Include="uiEngineProfiler.cpp">
       <Filter>GameEngine\UserInterface\UIScreen\EngineProfiler</Filter>
     </ClCompile>

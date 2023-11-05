@@ -163,6 +163,26 @@ void appWindow::onUpdate()
 
 	uiManager::get()->drawUI();
 	/*
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("File"))
+		{
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Edit"))
+		{
+			if (ImGui::MenuItem("Undo", "CTRL+Z")) {}
+			if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) {}  // Disabled item
+			ImGui::Separator();
+			if (ImGui::MenuItem("Cut", "CTRL+X")) {}
+			if (ImGui::MenuItem("Copy", "CTRL+C")) {}
+			if (ImGui::MenuItem("Paste", "CTRL+V")) {}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+	*/
+	/*
 	ImGui::Begin("Scene Settings", &m_tool_active, ImGuiWindowFlags_None);
 	ImGui::Text("Below are settings for configuring the scene");
 	ImGui::Checkbox("Show demo window", &m_demo_window_active);

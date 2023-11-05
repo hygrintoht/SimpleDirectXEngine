@@ -153,7 +153,6 @@
     <ClCompile Include="uiEngineProfiler.cpp" />
     <ClCompile Include="uiInspector.cpp" />
     <ClCompile Include="uiManager.cpp" />
-    <ClCompile Include="uiScreenAbstract.cpp" />
     <ClCompile Include="uiTestScreen.cpp" />
     <ClCompile Include="uiToolbar.cpp" />
     <ClCompile Include="uiWorldOutliner.cpp" />
