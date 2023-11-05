@@ -68,3 +68,4 @@ void gameObjectManager::draw(vertexShader* vertex_shader, pixelShader* pixel_sha
 		game_object->draw();
 	}
 }
+

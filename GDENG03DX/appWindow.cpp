@@ -21,7 +21,7 @@
 #include "gameObjectManager.h"
 #include "inputSystem.h"
 
-#include "UIManager.h"
+#include "uiManager.h"
 
 appWindow::appWindow()
 {
@@ -135,6 +135,8 @@ void appWindow::onCreate()
 	m_pixel_shader = graphicsEngine::get()->createPixelShader(m_shader_byte_code, m_size_shader);
 	graphicsEngine::get()->releaseCompiledShader();
 
+	uiManager::init(m_hwnd);
+	/*
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -146,8 +148,7 @@ void appWindow::onCreate()
 	// Setup Platform/Renderer backends
 	ImGui_ImplWin32_Init(m_hwnd);
 	ImGui_ImplDX11_Init(graphicsEngine::get()->getD3D11Device(), graphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext());
-
-	UIManager::init(m_hwnd);
+	*/
 }
 
 void appWindow::onUpdate()
@@ -160,26 +161,23 @@ void appWindow::onUpdate()
 
 	//update
 
-	// (Your code process and dispatch Win32 messages)
-	// Start the Dear ImGui frame
-	ImGui_ImplDX11_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
-
+	uiManager::get()->drawUI();
+	/*
 	ImGui::Begin("Scene Settings", &m_tool_active, ImGuiWindowFlags_None);
 	ImGui::Text("Below are settings for configuring the scene");
 	ImGui::Checkbox("Show demo window", &m_demo_window_active);
 	ImGui::ColorEdit4("clear color", m_clear_color);
 	if (ImGui::Button("pause animation"))
 	{
-		m_pause_game = !m_pause_game;
+		//m_pause_game = !m_pause_game;
 		engineTime::get()->togglePause();
-		std::cout << "pause: " << m_pause_game << "\n";
+		//std::cout << "pause: " << m_pause_game << "\n";
 	}
 	ImGui::End();
 
 	if (m_demo_window_active)
-		ImGui::ShowDemoWindow(); // Show demo window! :)
+		ImGui::ShowDemoWindow(); // Show demo window
+	*/
 
 	RECT rect = this->getClientWindowRect(); // get window rect data
 	graphicsEngine::get()->getImmediateDeviceContext()->setViewPortSize(rect.right - rect.left, rect.bottom - rect.top); // update viewport
@@ -211,66 +209,12 @@ void appWindow::onUpdate()
 
 	world_camera_temp.inverse();
 
-	// update cube
-	//test1.update(rect.top, rect.bottom, rect.right, rect.left);
-
-	//draw
-
-	// set constant buffer to object constant buffer
-	//graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, test1.getConstantBuffer());
-	//graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, test1.getConstantBuffer());
-
-	// draw cube
-	//test1.draw();
-	/*
-	test0.update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, test0.getConstantBuffer());
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, test0.getConstantBuffer());
-	test0.draw();
-	*/
-	/*
-	test1.update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, test1.getConstantBuffer());
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, test1.getConstantBuffer());
-	test1.draw();
-
-	test2.update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, test2.getConstantBuffer());
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, test2.getConstantBuffer());
-	test2.draw();
-
-	test3.update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, test3.getConstantBuffer());
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, test3.getConstantBuffer());
-	test3.draw();
-	*/
-	/*
-	test4.update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, test4.getConstantBuffer());
-	graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, test4.getConstantBuffer());
-	test4.draw();
-	*/
-
 	gameObjectManager::get()->update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
 	gameObjectManager::get()->draw(m_vertex_shader, m_pixel_shader);
-	/*
-	for (int i = 0; i < m_cube_objects_size; i++)
-	{
-		//m_cube_objects_list[i].update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left); //update object
-		//graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vertex_shader, m_cube_objects_list[i].getConstantBuffer()); // set constant buffer to object constant buffer
-		//graphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_pixel_shader, m_cube_objects_list[i].getConstantBuffer()); // set constant buffer to object constant buffer
-		//m_cube_objects_list[i].draw(); // draw object
-	}
-	*/
-	
 
-	// Rendering
-	// (Your code clears your framebuffer, renders your other stuff etc.)
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-	// (Your code calls swapchain's Present() function)
 
-	UIManager::get()->drawAllUI();
 
 	//present
 	m_swap_chain->present(true);

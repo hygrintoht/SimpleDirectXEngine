@@ -64,8 +64,8 @@ private:
 
 	bool m_mouse_down = false;
 
-	bool m_tool_active;
-	bool m_demo_window_active = false;
+	//bool m_tool_active;
+	//bool m_demo_window_active = false;
 	float m_clear_color[4] = { 0.5f, 0.5f, 0.5f, 1.0f };
-	bool m_pause_game = false;
+	//bool m_pause_game = false;
 };

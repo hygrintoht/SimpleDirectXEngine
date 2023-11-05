@@ -1,42 +1,71 @@
-#include "UIManager.h"
+#include "uiManager.h"
+
 #include "graphicsEngine.h"
 #include "deviceContext.h"
 
-UIManager::UIManager(HWND windowHandle)
-{
+//#include "iostream"
 
-}
+#include "uiTestScreen.h"
 
-UIManager::~UIManager()
-{
-}
+uiManager* uiManager::m_sharedInstance = nullptr;;
 
-UIManager* UIManager::get()
+uiManager::uiManager(HWND windowHandle)
 {
-    //return sharedInstance;
-	return nullptr;
-}
+	const uiNames ui_names;
 
-void UIManager::init(HWND windowHandle)
-{
-	//sharedInstance = new UIManager(windowHandle);
-}
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
-void UIManager::destroy()
-{
-	/*
-	// while ui list is not empty
-	while (!sharedInstance->uiList.empty())
-	{
-		// get the name of ui window
-		// remove from the ui table
-		// delete ui window data
-		// delete ui window
-		// pop ui window from ui list
+	ImGui_ImplWin32_Init(windowHandle);
+	ImGui_ImplDX11_Init(graphicsEngine::get()->getD3D11Device(), graphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext());
+
+	// create and add all needed ui screens below then add each to the ui list(not ui table)
+	auto* ui_test_screen = new uiTestScreen(ui_names.TEST_SCREEN);
+	m_ui_list.push_back(ui_test_screen);
+
+
+	// end of ui creation
+
+	// for each ui screen in ui list
+	for (int i = 0; i < this->m_ui_list.size(); i++) 
+	{	// add ui screen to ui table and assign its name as its key
+		m_ui_table[m_ui_list[i]->getName()] = m_ui_list[i];
 	}
-	*/
 }
 
-void UIManager::drawAllUI()
+uiManager::~uiManager()
 {
+}
+
+uiManager* uiManager::get()
+{
+	if (m_sharedInstance != nullptr)
+		return m_sharedInstance;
+}
+
+void uiManager::init(HWND windowHandle)
+{
+	if(m_sharedInstance == nullptr)
+		m_sharedInstance = new uiManager(windowHandle);
+}
+
+void uiManager::destroy()
+{
+
+}
+
+void uiManager::drawUI()
+{
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	for (auto& i : this->m_ui_list)
+	{
+		i->drawUI();
+	}
 }

@@ -1,18 +1,18 @@
 #pragma once
-#include <string>
+#include "string"
 
-class UIManager;
+class uiManager;
 
-class UIScreenAbstract
+class uiScreenAbstract
 {
 protected:
-	UIScreenAbstract(std::string name);
-	~UIScreenAbstract();
+	uiScreenAbstract(std::string name) : m_name(name) {}
+	~uiScreenAbstract();
 
-	std::string getName();
+	std::string	getName() { return m_name; }
 	virtual void drawUI() = 0;
 
-	std::string name;
+	std::string m_name;
 
-	friend class UIManager;
+	friend class uiManager;
 };

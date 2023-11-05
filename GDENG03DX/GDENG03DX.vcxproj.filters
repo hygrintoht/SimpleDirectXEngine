@@ -79,6 +79,30 @@
     <Filter Include="Externals\Tinyobjloader">
       <UniqueIdentifier>{3e54a88a-6bdd-45ee-8c36-dfde4d430ee0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GameObject\GameObjectManager">
+      <UniqueIdentifier>{3d172420-6296-4414-8b6c-c1e58f5ebedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UserInterface\UIManager">
+      <UniqueIdentifier>{98ae0b1f-eae4-41e3-ae83-42f728a43b99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UserInterface\UIScreen">
+      <UniqueIdentifier>{9fd6f3ec-ba23-4f4c-aca9-5a821f5b8126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UserInterface\UIScreen\EngineProfiler">
+      <UniqueIdentifier>{5a0d06cc-17be-4dbe-930f-38839fea0e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UserInterface\UIScreen\Inspector">
+      <UniqueIdentifier>{991db89c-8241-4d21-b9ce-758956eb1c6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UserInterface\UIScreen\TestScreen">
+      <UniqueIdentifier>{a435dab9-f0bf-4911-b265-7f2c78c867ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UserInterface\UIScreen\ToolBar">
+      <UniqueIdentifier>{f7b2d949-88c2-41b0-a218-a5f2bbe41853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UserInterface\UIScreen\WorldOutliner">
+      <UniqueIdentifier>{3fb8b79a-f2e9-4b35-ab4c-08d50d18671f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -153,13 +177,30 @@
     <ClCompile Include="Imgui\imgui_widgets.cpp">
       <Filter>Externals\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>GameEngine\UserInterface</Filter>
+    <ClCompile Include="gameObjectManager.cpp">
+      <Filter>GameEngine\GameObject\GameObjectManager</Filter>
     </ClCompile>
-    <ClCompile Include="UIScreenAbstract.cpp">
-      <Filter>GameEngine\UserInterface</Filter>
+    <ClCompile Include="uiManager.cpp">
+      <Filter>GameEngine\UserInterface\UIManager</Filter>
     </ClCompile>
-    <ClCompile Include="gameObjectManager.cpp" />
+    <ClCompile Include="uiScreenAbstract.cpp">
+      <Filter>GameEngine\UserInterface\UIScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="uiEngineProfiler.cpp">
+      <Filter>GameEngine\UserInterface\UIScreen\EngineProfiler</Filter>
+    </ClCompile>
+    <ClCompile Include="uiInspector.cpp">
+      <Filter>GameEngine\UserInterface\UIScreen\Inspector</Filter>
+    </ClCompile>
+    <ClCompile Include="uiTestScreen.cpp">
+      <Filter>GameEngine\UserInterface\UIScreen\TestScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="uiToolbar.cpp">
+      <Filter>GameEngine\UserInterface\UIScreen\ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="uiWorldOutliner.cpp">
+      <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -252,16 +293,33 @@
     <ClInclude Include="Imgui\imstb_truetype.h">
       <Filter>Externals\Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>GameEngine\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="UIScreenAbstract.h">
-      <Filter>GameEngine\UserInterface</Filter>
-    </ClInclude>
     <ClInclude Include="tiny_obj_loader.h">
       <Filter>Externals\Tinyobjloader</Filter>
     </ClInclude>
-    <ClInclude Include="gameObjectManager.h" />
+    <ClInclude Include="gameObjectManager.h">
+      <Filter>GameEngine\GameObject\GameObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="uiManager.h">
+      <Filter>GameEngine\UserInterface\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="uiScreenAbstract.h">
+      <Filter>GameEngine\UserInterface\UIScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="uiEngineProfiler.h">
+      <Filter>GameEngine\UserInterface\UIScreen\EngineProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="uiInspector.h">
+      <Filter>GameEngine\UserInterface\UIScreen\Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="uiTestScreen.h">
+      <Filter>GameEngine\UserInterface\UIScreen\TestScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="uiToolbar.h">
+      <Filter>GameEngine\UserInterface\UIScreen\ToolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="uiWorldOutliner.h">
+      <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="pixelShader.hlsl">
