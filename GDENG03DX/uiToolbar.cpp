@@ -23,7 +23,7 @@ void uiToolbar::drawUI()
 			{
 				auto* mesh_object = new meshObject("createdCube");
 				mesh_object->loadObjFileData("cube.obj");
-				mesh_object->setPosition(vector3(-1.5f, 1.0f, -3.0f));
+				mesh_object->setPosition(vector3(0,0,0));
 				mesh_object->setScale(vector3(1.0f, 1.0f, 1.0f));
 				mesh_object->changeAnimationType(-1);
 

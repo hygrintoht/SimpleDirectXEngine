@@ -89,11 +89,11 @@ public:
 
 		vector4 minor;
 		minor.cross(v1, v2, v3);
-		float determinant = 
-				  this->m_mat[0][3] * minor.m_x 
-				+ this->m_mat[1][3] * minor.m_y 
-				+ this->m_mat[2][3] * minor.m_z 
-				+ this->m_mat[3][3] * minor.m_w;
+		float determinant =
+			this->m_mat[0][3] * minor.m_x
+			+ this->m_mat[1][3] * minor.m_y
+			+ this->m_mat[2][3] * minor.m_z
+			+ this->m_mat[3][3] * minor.m_w;
 		determinant *= -1;
 		return determinant;
 	}
@@ -140,7 +140,7 @@ public:
 			for (int j = 0; j < 4; j++)
 			{
 				out.m_mat[i][j] =
-					  m_mat[i][0] * matrix.m_mat[0][j]
+					m_mat[i][0] * matrix.m_mat[0][j]
 					+ m_mat[i][1] * matrix.m_mat[1][j]
 					+ m_mat[i][2] * matrix.m_mat[2][j]
 					+ m_mat[i][3] * matrix.m_mat[3][j];
@@ -153,15 +153,22 @@ public:
 	{
 		::memcpy(m_mat, matrix.m_mat, sizeof(float) * 16);
 	}
-
+	// forward axis
 	vector3 getZDirection()
 	{
 		return vector3(m_mat[2][0], m_mat[2][1], m_mat[2][2]);
 	}
+	// up axis
+	vector3 getYDirection()
+	{
+		return vector3(m_mat[1][0], m_mat[1][1], m_mat[1][2]);
+	}
+	// left axis
 	vector3 getXDirection()
 	{
 		return vector3(m_mat[0][0], m_mat[0][1], m_mat[0][2]);
 	}
+
 	vector3 getTranslation()
 	{
 		return vector3(m_mat[3][0], m_mat[3][1], m_mat[3][2]);
