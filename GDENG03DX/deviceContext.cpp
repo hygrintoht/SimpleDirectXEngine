@@ -41,7 +41,6 @@ void deviceContext::setIndexBuffer(indexBuffer* index_buffer)
 	m_device_context->IASetIndexBuffer(index_buffer->m_buffer, DXGI_FORMAT_R32_UINT, 0);
 }
 
-
 void deviceContext::drawTriangleList(UINT vertex_count, UINT start_vertex_index)
 {
 	m_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);

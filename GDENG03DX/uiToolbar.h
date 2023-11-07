@@ -14,6 +14,5 @@ protected:
 
 	friend class uiManager;
 private:
-	void* m_shader_byte_code = nullptr;
-	size_t m_size_shader = 0;
+	int objectCounter = 0;
 };

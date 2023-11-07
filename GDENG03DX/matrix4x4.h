@@ -174,6 +174,11 @@ public:
 		return vector3(m_mat[3][0], m_mat[3][1], m_mat[3][2]);
 	}
 
+	vector3 getScale()
+	{
+		return vector3(m_mat[0][0], m_mat[1][1], m_mat[2][2]);
+	}
+
 	void setPerspectiveFovLH(float fov, float aspect, float znear, float zfar)
 	{
 		float yscale = 1.0f / tan(fov / 2.0f);

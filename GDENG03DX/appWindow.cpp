@@ -123,12 +123,15 @@ void appWindow::onCreate()
 	m_constant_buffer = graphicsEngine::get()->createConstantBuffer();
 	m_constant_buffer->load(&cc, sizeof(constant));
 
+	void* shader_byte_code = nullptr;
+	size_t size_shader = 0;
+
 	// compile vertex shader
-	graphicsEngine::get()->compileVertexShader(L"vertexShader.hlsl", "main", &m_shader_byte_code, &m_size_shader);
-	m_vertex_shader = graphicsEngine::get()->createVertexShader(m_shader_byte_code, m_size_shader);
-	test0.loadVertexBuffer(m_shader_byte_code, m_size_shader);
+	graphicsEngine::get()->compileVertexShader(L"vertexShader.hlsl", "main", &shader_byte_code, &size_shader);
+	m_vertex_shader = graphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
+	test0.loadVertexBuffer(shader_byte_code, size_shader);
 	
-	test1.loadVertexBuffer(m_shader_byte_code, m_size_shader);
+	test1.loadVertexBuffer(shader_byte_code, size_shader);
 	/*
 	test2.loadVertexBuffer(m_shader_byte_code, m_size_shader);
 	test3.loadVertexBuffer(m_shader_byte_code, m_size_shader);
@@ -138,27 +141,14 @@ void appWindow::onCreate()
 		m_cube_objects_list[i].loadVertexBuffer(m_shader_byte_code, m_size_shader);
 	}
 	*/
-	graphicsEngine::get()->releaseCompiledShader();
+	//graphicsEngine::get()->releaseCompiledShader();
 
 	// compile pixel shader
-	graphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "main", &m_shader_byte_code, &m_size_shader);
-	m_pixel_shader = graphicsEngine::get()->createPixelShader(m_shader_byte_code, m_size_shader);
-	graphicsEngine::get()->releaseCompiledShader();
+	graphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "main", &shader_byte_code, &size_shader);
+	m_pixel_shader = graphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
+	//graphicsEngine::get()->releaseCompiledShader();
 
 	uiManager::init(m_hwnd);
-	/*
-	// Setup Dear ImGui context
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch
-
-	// Setup Platform/Renderer backends
-	ImGui_ImplWin32_Init(m_hwnd);
-	ImGui_ImplDX11_Init(graphicsEngine::get()->getD3D11Device(), graphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext());
-	*/
 }
 
 void appWindow::onUpdate()
@@ -172,42 +162,6 @@ void appWindow::onUpdate()
 	//update
 
 	uiManager::get()->drawUI();
-	/*
-	if (ImGui::BeginMainMenuBar())
-	{
-		if (ImGui::BeginMenu("File"))
-		{
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("Edit"))
-		{
-			if (ImGui::MenuItem("Undo", "CTRL+Z")) {}
-			if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) {}  // Disabled item
-			ImGui::Separator();
-			if (ImGui::MenuItem("Cut", "CTRL+X")) {}
-			if (ImGui::MenuItem("Copy", "CTRL+C")) {}
-			if (ImGui::MenuItem("Paste", "CTRL+V")) {}
-			ImGui::EndMenu();
-		}
-		ImGui::EndMainMenuBar();
-	}
-	*/
-	/*
-	ImGui::Begin("Scene Settings", &m_tool_active, ImGuiWindowFlags_None);
-	ImGui::Text("Below are settings for configuring the scene");
-	ImGui::Checkbox("Show demo window", &m_demo_window_active);
-	ImGui::ColorEdit4("clear color", m_clear_color);
-	if (ImGui::Button("pause animation"))
-	{
-		//m_pause_game = !m_pause_game;
-		engineTime::get()->togglePause();
-		//std::cout << "pause: " << m_pause_game << "\n";
-	}
-	ImGui::End();
-
-	if (m_demo_window_active)
-		ImGui::ShowDemoWindow(); // Show demo window
-	*/
 
 	RECT rect = this->getClientWindowRect(); // get window rect data
 	graphicsEngine::get()->getImmediateDeviceContext()->setViewPortSize(rect.right - rect.left, rect.bottom - rect.top); // update viewport
@@ -259,16 +213,14 @@ void appWindow::onDestroy()
 	m_pixel_shader->release();
 	
 	m_swap_chain->release();
-
-	//test1.release(); // release cube
-	for (int i = 0; i < m_cube_objects_size; i++)
-	{
-		m_cube_objects_list[i].release();
-	}
+	
+	
 
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
+
+	graphicsEngine::get()->releaseCompiledShader();
 
 	graphicsEngine::get()->release();
 }
@@ -325,26 +277,22 @@ void appWindow::onMouseMove(const point& mouse_position)
 
 void appWindow::onLeftMouseDown(const point& mouse_position)
 {
-	//m_scale_cube = 0.5f;
 	
 }
 
 void appWindow::onLeftMouseUp(const point& mouse_position)
 {
-	//m_scale_cube = 1.0f;
 	
 }
 
 void appWindow::onRightMouseDown(const point& mouse_position)
 {
-	//m_scale_cube = 2.0f;
 	m_mouse_down = true;
 	inputSystem::get()->showCursor(false);	// show cursor
 }
 
 void appWindow::onRightMouseUp(const point& mouse_position)
 {
-	//m_scale_cube = 1.0f;
 	m_mouse_down = false;
 	inputSystem::get()->showCursor(true);	// show cursor
 }

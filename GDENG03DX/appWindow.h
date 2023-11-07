@@ -43,9 +43,6 @@ private:
 	vertexShader* m_vertex_shader;
 	pixelShader* m_pixel_shader;
 
-	void* m_shader_byte_code = nullptr;
-	size_t m_size_shader = 0;
-
 	cubeObject test0;
 	meshObject test1;
 	meshObject test2;

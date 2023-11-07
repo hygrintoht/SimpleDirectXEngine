@@ -155,6 +155,8 @@ bool graphicsEngine::compileVertexShader(const wchar_t* file_name, const char* e
 	*shader_byte_code = m_blob->GetBufferPointer();
 	*byte_code_size = m_blob->GetBufferSize();
 
+	m_vsblob = m_blob;
+
 	return true;
 }
 
@@ -170,10 +172,20 @@ bool graphicsEngine::compilePixelShader(const wchar_t* file_name, const char* en
 	*shader_byte_code = m_blob->GetBufferPointer();
 	*byte_code_size = m_blob->GetBufferSize();
 
+	m_psblob = m_blob;
+
 	return true;
 }
 
 void graphicsEngine::releaseCompiledShader()
 {
-	if (m_blob)m_blob->Release();
+	if (m_blob) m_blob->Release();
+	if (m_vsblob) m_vsblob->Release();
+	if (m_psblob) m_psblob->Release();
+}
+
+void graphicsEngine::getVertexShaderData(void** shader_byte_code, size_t* byte_code_size)
+{
+	*shader_byte_code = m_vsblob->GetBufferPointer();
+	*byte_code_size = m_vsblob->GetBufferSize();
 }
