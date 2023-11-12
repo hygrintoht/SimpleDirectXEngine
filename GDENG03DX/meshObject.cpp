@@ -7,15 +7,17 @@
 
 meshObject::meshObject()
 {
+	m_game_object_type = mesh;
 }
 
 meshObject::meshObject(std::string name) : gameObject(name)
 {
+	m_game_object_type = mesh;
 }
 
 meshObject::meshObject(std::string name, std::string file_path) : gameObject(name)
 {
-
+	m_game_object_type = mesh;
 	loadObjFileData(file_path);
 }
 
@@ -70,6 +72,8 @@ void meshObject::update(matrix4x4 world_camera_temp, float top, float bottom, fl
 
 void meshObject::loadObjFileData(std::string file_path)
 {
+	m_file_path = file_path;
+
 	std::string warn;
 	std::string err;
 
@@ -128,6 +132,11 @@ void meshObject::loadObjDataToMemory()
 		}
 	}
 	std::cout << "loaded obj data to mem" << std::endl;
+}
+
+std::string meshObject::getFilePath()
+{
+	return m_file_path;
 }
 
 void meshObject::changeAnimationType(int animation_type)

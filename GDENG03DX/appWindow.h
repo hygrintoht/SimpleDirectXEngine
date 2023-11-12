@@ -1,4 +1,5 @@
 #pragma once
+
 #include "window.h"
 
 #include "cubeObject.h"
@@ -21,7 +22,6 @@ public:
 	virtual void onCreate() override;
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
-
 	
 	virtual void onFocus() override;
 	virtual void onKillFocus() override;

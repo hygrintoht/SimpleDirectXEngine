@@ -12,6 +12,7 @@ public:
 	bool init(HWND hwnd, UINT width, UINT height);
 	bool release();
 
+	IDXGISwapChain* getSwapChain();
 	bool present(bool vsync);
 
 private:

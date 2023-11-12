@@ -1,3 +1,5 @@
+#define YAML_CPP_DLL
+
 #include "appWindow.h"
 
 int main()

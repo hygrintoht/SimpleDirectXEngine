@@ -46,9 +46,6 @@
     <Filter Include="GameEngine\GameObject">
       <UniqueIdentifier>{6ef22b31-4cc5-42e0-8c23-fa4fea9f257a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GameObject\CubeObject">
-      <UniqueIdentifier>{f1a4c599-0e09-4be8-a291-760560237655}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\Math">
       <UniqueIdentifier>{47ebe737-c319-40b2-a037-f09c4c8866ee}</UniqueIdentifier>
     </Filter>
@@ -60,9 +57,6 @@
     </Filter>
     <Filter Include="GameEngine\InputSystem">
       <UniqueIdentifier>{5982b204-4a2b-4c1a-bbfc-d923754030da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GameObject\MeshObject">
-      <UniqueIdentifier>{b4bd94e1-cbca-49a6-af2d-b5d95fe7ad06}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameEngine\UserInterface">
       <UniqueIdentifier>{989f732f-4970-4dad-80be-205cf6fbc9c1}</UniqueIdentifier>
@@ -103,6 +97,15 @@
     <Filter Include="GameEngine\UserInterface\UIScreen\WorldOutliner">
       <UniqueIdentifier>{3fb8b79a-f2e9-4b35-ab4c-08d50d18671f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GameObject\GameObjects">
+      <UniqueIdentifier>{ab0fdc6a-72d9-4721-b087-963f0ae52bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\GameObjects\CubeObject">
+      <UniqueIdentifier>{f1a4c599-0e09-4be8-a291-760560237655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\GameObjects\MeshObject">
+      <UniqueIdentifier>{b4bd94e1-cbca-49a6-af2d-b5d95fe7ad06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -142,7 +145,7 @@
       <Filter>GameEngine\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="cubeObject.cpp">
-      <Filter>GameEngine\GameObject\CubeObject</Filter>
+      <Filter>GameEngine\GameObject\GameObjects\CubeObject</Filter>
     </ClCompile>
     <ClCompile Include="indexBuffer.cpp">
       <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
@@ -154,7 +157,7 @@
       <Filter>GameEngine\InputSystem</Filter>
     </ClCompile>
     <ClCompile Include="meshObject.cpp">
-      <Filter>GameEngine\GameObject\MeshObject</Filter>
+      <Filter>GameEngine\GameObject\GameObjects\MeshObject</Filter>
     </ClCompile>
     <ClCompile Include="Imgui\imgui.cpp">
       <Filter>Externals\Imgui</Filter>
@@ -198,6 +201,7 @@
     <ClCompile Include="uiWorldOutliner.cpp">
       <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
     </ClCompile>
+    <ClCompile Include="serializer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -234,7 +238,7 @@
       <Filter>GameEngine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="cubeObject.h">
-      <Filter>GameEngine\GameObject\CubeObject</Filter>
+      <Filter>GameEngine\GameObject\GameObjects\CubeObject</Filter>
     </ClInclude>
     <ClInclude Include="mathUtils.h">
       <Filter>GameEngine\Math</Filter>
@@ -261,7 +265,7 @@
       <Filter>GameEngine\InputSystem</Filter>
     </ClInclude>
     <ClInclude Include="meshObject.h">
-      <Filter>GameEngine\GameObject\MeshObject</Filter>
+      <Filter>GameEngine\GameObject\GameObjects\MeshObject</Filter>
     </ClInclude>
     <ClInclude Include="point.h">
       <Filter>GameEngine\Math</Filter>
@@ -317,6 +321,7 @@
     <ClInclude Include="uiWorldOutliner.h">
       <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
     </ClInclude>
+    <ClInclude Include="serializer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="pixelShader.hlsl">

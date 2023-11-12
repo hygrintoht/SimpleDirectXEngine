@@ -104,11 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\trist\vcpkg\packages\jsoncpp_x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\trist\vcpkg\packages\jsoncpp_x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,6 +151,7 @@
     <ClCompile Include="meshObject.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="quadObject.cpp" />
+    <ClCompile Include="serializer.cpp" />
     <ClCompile Include="swapChain.cpp" />
     <ClCompile Include="uiEngineProfiler.cpp" />
     <ClCompile Include="uiInspector.cpp" />
@@ -186,6 +189,7 @@
     <ClInclude Include="pixelShader.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="quadObject.h" />
+    <ClInclude Include="serializer.h" />
     <ClInclude Include="swapChain.h" />
     <ClInclude Include="tiny_obj_loader.h" />
     <ClInclude Include="uiEngineProfiler.h" />

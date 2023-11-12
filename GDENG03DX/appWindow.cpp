@@ -199,6 +199,11 @@ void appWindow::onUpdate()
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
+	// start: render to texture test
+
+	// ID3D11Texture2D* back_buffer;
+	// m_swap_chain->getSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)back_buffer);
+	// end: render to texture test
 
 	//present
 	m_swap_chain->present(true);
@@ -213,8 +218,6 @@ void appWindow::onDestroy()
 	m_pixel_shader->release();
 	
 	m_swap_chain->release();
-	
-	
 
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();

@@ -19,10 +19,14 @@ public:
 	void loadObjFileData(std::string file_path);
 	void loadObjDataToMemory();
 
+	std::string getFilePath();
 	void changeAnimationType(int animation);
+
 private:
 	tinyobj::attrib_t* attrib = new tinyobj::attrib_t;	// obj atributes
 	std::vector<tinyobj::shape_t>* shapes = new std::vector<tinyobj::shape_t>;	// list of shapes
+
+	std::string m_file_path;
 
 	int m_animation_type = 0;
 	float m_animation_timer = 0;

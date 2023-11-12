@@ -56,6 +56,11 @@ bool swapChain::release()
 	return true;
 }
 
+IDXGISwapChain* swapChain::getSwapChain()
+{
+	return m_swap_chain;
+}
+
 bool swapChain::present(bool vsync)
 {
 	m_swap_chain->Present(vsync, NULL);

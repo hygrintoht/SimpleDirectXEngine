@@ -7,7 +7,7 @@
 
 cubeObject::cubeObject()
 {
-	
+	m_game_object_type = cube;
 	vertex vertex_list[] =
 	{
 		//front vertices
@@ -71,6 +71,7 @@ cubeObject::cubeObject()
 
 cubeObject::cubeObject(std::string name) : gameObject(name)
 {
+	m_game_object_type = cube;
 	vertex vertex_list[] =
 	{
 		//front vertices
