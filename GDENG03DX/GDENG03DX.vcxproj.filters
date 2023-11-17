@@ -322,6 +322,7 @@
       <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
     </ClInclude>
     <ClInclude Include="serializer.h" />
+    <ClInclude Include="quaternion.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="pixelShader.hlsl">

@@ -148,7 +148,7 @@ void appWindow::onCreate()
 	m_pixel_shader = graphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	//graphicsEngine::get()->releaseCompiledShader();
 
-	uiManager::init(m_hwnd);
+	uiManager::init(m_hwnd, m_swap_chain);
 }
 
 void appWindow::onUpdate()

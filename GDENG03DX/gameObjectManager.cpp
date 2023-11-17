@@ -6,6 +6,7 @@
 #include "deviceContext.h"
 #include "gameObject.h"
 #include "pixelShader.h"
+#include "serializer.h"
 #include "vertexShader.h"
 
 gameObjectManager::gameObjectManager()
@@ -102,4 +103,21 @@ void gameObjectManager::setSelectedObject(gameObject* game_object)
 gameObject* gameObjectManager::getSelectedObject()
 {
 	return m_selected_object;
+}
+
+void gameObjectManager::reloadScene()
+{
+	deleteAllObjects();
+	serializer::openScene(m_current_scene_filepath);
+	m_isFirstPlay = false;
+}
+
+bool gameObjectManager::getFirstPlay()
+{
+	return m_isFirstPlay;
+}
+
+void gameObjectManager::firstPlay()
+{
+	m_isFirstPlay = true;
 }

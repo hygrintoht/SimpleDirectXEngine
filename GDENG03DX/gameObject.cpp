@@ -82,21 +82,11 @@ gameObject::gameObjectType gameObject::getType()
 
 void gameObject::setPosition(vector3 position)
 {
-	/*
-	m_transform.m_mat[3][0] = position.m_x;
-	m_transform.m_mat[3][1] = position.m_y;
-	m_transform.m_mat[3][2] = position.m_z;
-	*/
 	m_transform.setTranslation(position);
 }
 
 void gameObject::setScale(vector3 scale)
 {
-	/*
-	m_transform.m_mat[0][0] = scale.m_x;
-	m_transform.m_mat[1][1] = scale.m_y;
-	m_transform.m_mat[2][2] = scale.m_z;
-	*/
 	m_transform.setScale(scale);
 }
 

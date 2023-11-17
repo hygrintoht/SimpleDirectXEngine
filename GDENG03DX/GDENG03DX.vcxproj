@@ -189,6 +189,7 @@
     <ClInclude Include="pixelShader.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="quadObject.h" />
+    <ClInclude Include="quaternion.h" />
     <ClInclude Include="serializer.h" />
     <ClInclude Include="swapChain.h" />
     <ClInclude Include="tiny_obj_loader.h" />

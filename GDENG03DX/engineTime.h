@@ -11,6 +11,7 @@ public:
 	double getRunningTime();
 	double getRunningTimeAsMilliseconds();
 	void togglePause();
+	bool isPaused();
 
 private:
 	engineTime();
@@ -24,10 +25,9 @@ private:
 	std::chrono::system_clock::time_point end;
 
 	double deltaTime = 0;
-
 	double runningTime = 0;
 
-	bool paused = false;
+	bool paused = true;
 
 	void logFrameStart();
 	void logFrameEnd();

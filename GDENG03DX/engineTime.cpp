@@ -53,3 +53,8 @@ void engineTime::togglePause()
 {
 	paused = !paused;
 }
+
+bool engineTime::isPaused()
+{
+	return paused;
+}

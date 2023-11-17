@@ -16,4 +16,7 @@ private:
 
 	float m_average_frame_time = 0;
 	float m_average_fps = 0;
+
+	std::string m_average_frame_time_string;
+	std::string m_average_fps_string;
 };

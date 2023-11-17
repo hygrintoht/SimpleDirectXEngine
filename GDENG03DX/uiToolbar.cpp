@@ -1,13 +1,18 @@
 #include "uiToolbar.h"
 
+#include "Imgui/imgui.h"
+
+#include "engineTime.h"
 #include "gameObjectManager.h"
 #include "graphicsEngine.h"
 #include "meshObject.h"
 #include "serializer.h"
-#include "Imgui/imgui.h"
+#include "uiManager.h"
 
 void uiToolbar::drawUI()
 {
+	const uiNames ui_names;
+
 	if (ImGui::BeginMainMenuBar())
 	{
 		if (ImGui::BeginMenu("File"))
@@ -19,11 +24,11 @@ void uiToolbar::drawUI()
 			if (ImGui::MenuItem("Save"))
 			{
 				serializer::saveScene();
-				// serialize all game objects to the text(json) file
 			}
 			if (ImGui::MenuItem("Open"))
 			{
-				// parse all game objects from text file to the game scene
+				gameObjectManager::get()->deleteAllObjects();
+				serializer::openScene();
 			}
 			if (ImGui::MenuItem("Exit"))
 			{
@@ -88,6 +93,47 @@ void uiToolbar::drawUI()
 				mesh_object->loadVertexBuffer(shader_byte_code, size_shader);
 			}
 			if (ImGui::MenuItem("Create Light")) {}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Play/Pause"))
+		{
+			if (ImGui::MenuItem("Play"))
+			{	// if first play
+				if (!gameObjectManager::get()->getFirstPlay())
+				{	
+					gameObjectManager::get()->firstPlay();	// set as first play
+					engineTime::get()->togglePause();	// toggle from pause
+				}
+				else if(gameObjectManager::get()->getFirstPlay()) // if play is pressed again
+				{
+					gameObjectManager::get()->reloadScene(); // reload scene
+					if(!engineTime::get()->isPaused())	// if scene is running
+					{
+						engineTime::get()->togglePause(); // toggle pause
+					}
+				}
+			}
+			if (ImGui::MenuItem("Pause"))
+			{	// if first play
+				if(gameObjectManager::get()->getFirstPlay())
+					engineTime::get()->togglePause();
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Show UI Windows"))
+		{
+			if (ImGui::MenuItem(ui_names.PROFILER_SCREEN.c_str()))
+			{
+				uiManager::get()->toggleUIScreen(ui_names.PROFILER_SCREEN);
+			}
+			if (ImGui::MenuItem(ui_names.INSPECTOR_SCREEN.c_str()))
+			{
+				uiManager::get()->toggleUIScreen(ui_names.INSPECTOR_SCREEN);
+			}
+			if (ImGui::MenuItem(ui_names.HIERARCHY_SCREEN.c_str()))
+			{
+				uiManager::get()->toggleUIScreen(ui_names.HIERARCHY_SCREEN);
+			}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

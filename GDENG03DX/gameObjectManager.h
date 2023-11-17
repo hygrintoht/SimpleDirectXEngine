@@ -33,6 +33,10 @@ public:
 	void setSelectedObject(std::string name);
 	void setSelectedObject(gameObject* game_object);
 	gameObject* getSelectedObject();
+	// scene reload
+	void reloadScene();
+	bool getFirstPlay();
+	void firstPlay();
 
 private:
 	gameObjectManager();
@@ -40,7 +44,8 @@ private:
 	std::unordered_map<std::string, gameObject*> m_game_object_table;
 	std::vector<gameObject*> m_game_object_list;
 
-	std::vector<gameObject> m_game_objects; // used 
-
 	gameObject* m_selected_object = nullptr;
+
+	std::string m_current_scene_filepath = "sample.json";
+	bool m_isFirstPlay = false;
 };

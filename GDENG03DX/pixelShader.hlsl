@@ -13,7 +13,13 @@ cbuffer constant: register(b0)
 	unsigned int m_time;
 };
 
+Texture2D gTexture : register(t0);
+SamplerState gSampler : register(s0);
+
 float4 main(PS_INPUT input) : SV_TARGET
 {
-	return float4(lerp(input.color, input.color1, (sin(m_time/500.0f) + 1.0f) / 2.0f),1.0f);
+	//float4 samp_color = gTexture.Sample(gSampler, float2(0,0));
+	float4 color = /*samp_color*/ float4(lerp(input.color, input.color1, (sin(m_time / 500.0f) + 1.0f) / 2.0f),1.0f);
+
+	return color;
 }

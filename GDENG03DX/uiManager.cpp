@@ -1,20 +1,28 @@
 #include "uiManager.h"
 
+#include <iostream>
+
+#include "Imgui/imgui.h"
+#include "Imgui/imgui_impl_dx11.h"
+#include "Imgui/imgui_impl_win32.h"
+
 #include "graphicsEngine.h"
 #include "deviceContext.h"
-
-//#include "iostream"
-
 #include "uiTestScreen.h"
 #include "uiEngineProfiler.h"
 #include "uiInspector.h"
 #include "uiToolbar.h"
 #include "uiWorldOutliner.h"
+#include "swapChain.h"
 
 uiManager* uiManager::m_sharedInstance = nullptr;;
 
-uiManager::uiManager(HWND windowHandle)
+uiManager::uiManager(HWND windowHandle,swapChain* _swapChain)
 {
+	m_swap_chain = _swapChain;
+
+	m_window_handle = windowHandle;
+
 	const uiNames ui_names;
 
 	IMGUI_CHECKVERSION();
@@ -28,7 +36,6 @@ uiManager::uiManager(HWND windowHandle)
 	ImGui_ImplDX11_Init(graphicsEngine::get()->getD3D11Device(), graphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext());
 
 	// create and add all needed ui screens below then add each to the ui list(not ui table)
-
 	auto* ui_toolbar = new uiToolbar(ui_names.MENU_SCREEN);
 	m_ui_list.push_back(ui_toolbar);
 
@@ -44,6 +51,7 @@ uiManager::uiManager(HWND windowHandle)
 	auto* ui_world_outliner = new uiWorldOutliner(ui_names.HIERARCHY_SCREEN);
 	m_ui_list.push_back(ui_world_outliner);
 
+	
 	// end of ui creation
 
 	// for each ui screen in ui list
@@ -63,10 +71,10 @@ uiManager* uiManager::get()
 		return m_sharedInstance;
 }
 
-void uiManager::init(HWND windowHandle)
+void uiManager::init(HWND windowHandle, swapChain* _swapChain)
 {
 	if(m_sharedInstance == nullptr)
-		m_sharedInstance = new uiManager(windowHandle);
+		m_sharedInstance = new uiManager(windowHandle, _swapChain);
 }
 
 void uiManager::destroy()
@@ -80,8 +88,35 @@ void uiManager::drawUI()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	for (auto& i : this->m_ui_list)
+	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
+	//ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+	//ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
+	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
+	for (auto& m_ui : this->m_ui_list)
 	{
-		i->drawUI();
+		m_ui->drawUI();
+	}
+	//ImGui::End();
+}
+
+HWND uiManager::getWindowHandle()
+{
+	return m_window_handle;
+}
+
+swapChain* uiManager::getSwapChain()
+{
+	return m_swap_chain;
+}
+
+void uiManager::toggleUIScreen(std::string _uiName)
+{
+	for(auto ui : m_ui_list)
+	{
+		if(ui->getName() == _uiName)
+		{
+			ui->m_active = !ui->m_active;
+			std::cout << "bool" << ui->m_active << std::endl;
+		}
 	}
 }

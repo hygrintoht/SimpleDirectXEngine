@@ -1,6 +1,9 @@
 #include "uiTestScreen.h"
 
 #include "engineTime.h"
+#include "graphicsEngine.h"
+#include "swapChain.h"
+#include "uiManager.h"
 #include "Imgui/imgui.h"
 
 void uiTestScreen::drawUI()
@@ -13,8 +16,22 @@ void uiTestScreen::drawUI()
 	{
 		engineTime::get()->togglePause();
 	}
-	ImGui::End();
+	/*
+	ImGui::Begin("Image Test", &m_test_active, ImGuiWindowFlags_None);
+	ImTextureID my_tex_id = uiManager::get()->getSwapChain()->m_texture_shader_resource_view;
 
+	float my_tex_w = 1024.0f;
+	float my_tex_h = 768.0f;
+	ImVec2 uv_min = ImVec2(0.0f, 0.0f);                 // Top-left
+	ImVec2 uv_max = ImVec2(1.0f, 1.0f);                 // Lower-right
+	ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
+	ImVec4 border_col = ImGui::GetStyleColorVec4(ImGuiCol_Border);
+
+	ImGui::Image(my_tex_id, ImVec2(my_tex_w, my_tex_h), uv_min, uv_max, tint_col, border_col);
+
+	
+	*/
+	ImGui::End();
 	if (m_demo_window_active)
 		ImGui::ShowDemoWindow(); // Show demo window
 }

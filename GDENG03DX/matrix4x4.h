@@ -14,27 +14,54 @@ public:
 	~matrix4x4()
 	{
 	}
+	
+	float m_mat[4][4] = {};
+	// operator overloads
+	void operator *=(const matrix4x4& matrix)
+	{
+		matrix4x4 out;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				out.m_mat[i][j] =
+					m_mat[i][0] * matrix.m_mat[0][j]
+					+ m_mat[i][1] * matrix.m_mat[1][j]
+					+ m_mat[i][2] * matrix.m_mat[2][j]
+					+ m_mat[i][3] * matrix.m_mat[3][j];
+			}
+		}
+		setMatrix(out);
+	}
+	// set functions
+	void setZero()
+	{
+		memset(m_mat, 0, sizeof(float) * 16);
+	}
 
 	void setIdentity()
 	{
-		::memset(m_mat, 0, sizeof(float) * 16);
+		memset(m_mat, 0, sizeof(float) * 16);
 		m_mat[0][0] = 1;
 		m_mat[1][1] = 1;
 		m_mat[2][2] = 1;
 		m_mat[3][3] = 1;
 	}
-	// must update code for cube
+
+	void setMatrix(const matrix4x4& matrix)
+	{
+		memcpy(m_mat, matrix.m_mat, sizeof(float) * 16);
+	}
+	// manipulations
 	void setTranslation(const vector3& translation)
 	{
-		//setIdentity();
 		m_mat[3][0] = translation.m_x;
 		m_mat[3][1] = translation.m_y;
 		m_mat[3][2] = translation.m_z;
 	}
-	// must update code for cube
+
 	void setScale(const vector3& scale)
 	{
-		//setIdentity();
 		m_mat[0][0] = scale.m_x;
 		m_mat[1][1] = scale.m_y;
 		m_mat[2][2] = scale.m_z;
@@ -66,9 +93,9 @@ public:
 
 	void setRotation(const vector3& rotation) //note: xyz rotation
 	{
-		int x = rotation.m_x;
-		int y = rotation.m_y;
-		int z = rotation.m_z;
+		float x = rotation.m_x;
+		float y = rotation.m_y;
+		float z = rotation.m_z;
 
 		m_mat[0][0] = cos(y) * cos(z);
 		m_mat[0][1] = cos(y) * sin(z);
@@ -81,39 +108,22 @@ public:
 		m_mat[2][2] = cos(x) * cos(y);
 	}
 
-	float getDeterminant()
-	{
-		vector4 v1 = vector4(this->m_mat[0][0], this->m_mat[1][0], this->m_mat[2][0], this->m_mat[3][0]);
-		vector4 v2 = vector4(this->m_mat[0][1], this->m_mat[1][1], this->m_mat[2][1], this->m_mat[3][1]);
-		vector4 v3 = vector4(this->m_mat[0][2], this->m_mat[1][2], this->m_mat[2][2], this->m_mat[3][2]);
-
-		vector4 minor;
-		minor.cross(v1, v2, v3);
-		float determinant =
-			this->m_mat[0][3] * minor.m_x
-			+ this->m_mat[1][3] * minor.m_y
-			+ this->m_mat[2][3] * minor.m_z
-			+ this->m_mat[3][3] * minor.m_w;
-		determinant *= -1;
-		return determinant;
-	}
-
 	void inverse()
 	{
-		int a, i, j;
 		matrix4x4 out;
-		vector4 v, vec[3];
+		vector4 v;
 		float determinant = 0.0f;
 
 		determinant = this->getDeterminant();
 		if (!determinant) return;
-		for (i = 0; i < 4; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			for (j = 0; j < 4; j++)
+			vector4 vec[3];
+			for (int j = 0; j < 4; j++)
 			{
 				if (j != i)
 				{
-					a = j;
+					int a = j;
 					if (j > i) a = a - 1;
 					vec[a].m_x = (this->m_mat[j][0]);
 					vec[a].m_y = (this->m_mat[j][1]);
@@ -130,53 +140,6 @@ public:
 		}
 
 		this->setMatrix(out);
-	}
-
-	void operator *=(const matrix4x4& matrix)
-	{
-		matrix4x4 out;
-		for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 4; j++)
-			{
-				out.m_mat[i][j] =
-					m_mat[i][0] * matrix.m_mat[0][j]
-					+ m_mat[i][1] * matrix.m_mat[1][j]
-					+ m_mat[i][2] * matrix.m_mat[2][j]
-					+ m_mat[i][3] * matrix.m_mat[3][j];
-			}
-		}
-		setMatrix(out);
-	}
-
-	void setMatrix(const matrix4x4& matrix)
-	{
-		::memcpy(m_mat, matrix.m_mat, sizeof(float) * 16);
-	}
-	// forward axis
-	vector3 getZDirection()
-	{
-		return vector3(m_mat[2][0], m_mat[2][1], m_mat[2][2]);
-	}
-	// up axis
-	vector3 getYDirection()
-	{
-		return vector3(m_mat[1][0], m_mat[1][1], m_mat[1][2]);
-	}
-	// left axis
-	vector3 getXDirection()
-	{
-		return vector3(m_mat[0][0], m_mat[0][1], m_mat[0][2]);
-	}
-
-	vector3 getTranslation()
-	{
-		return vector3(m_mat[3][0], m_mat[3][1], m_mat[3][2]);
-	}
-
-	vector3 getScale()
-	{
-		return vector3(m_mat[0][0], m_mat[1][1], m_mat[2][2]);
 	}
 
 	void setPerspectiveFovLH(float fov, float aspect, float znear, float zfar)
@@ -198,6 +161,69 @@ public:
 		m_mat[2][2] = 1.0f / (far_plane - near_plane);
 		m_mat[3][2] = -(near_plane / (far_plane - near_plane));
 	}
+	// get value
+	float getDeterminant() const
+	{
+		vector4 v1 = vector4(this->m_mat[0][0], this->m_mat[1][0], this->m_mat[2][0], this->m_mat[3][0]);
+		vector4 v2 = vector4(this->m_mat[0][1], this->m_mat[1][1], this->m_mat[2][1], this->m_mat[3][1]);
+		vector4 v3 = vector4(this->m_mat[0][2], this->m_mat[1][2], this->m_mat[2][2], this->m_mat[3][2]);
+
+		vector4 minor;
+		minor.cross(v1, v2, v3);
+		float determinant =
+			  this->m_mat[0][3] * minor.m_x
+			+ this->m_mat[1][3] * minor.m_y
+			+ this->m_mat[2][3] * minor.m_z
+			+ this->m_mat[3][3] * minor.m_w;
+		determinant *= -1;
+
+		return determinant;
+	}
+
+	float getTrace() const
+	{
+		return m_mat[0][0] + m_mat[1][1] + m_mat[2][2] + m_mat[3][3];
+	}
+	// forward axis
+	vector3 getZDirection() const
+	{
+		return vector3(m_mat[2][0], m_mat[2][1], m_mat[2][2]);
+	}
+	// up axis
+	vector3 getYDirection() const
+	{
+		return vector3(m_mat[1][0], m_mat[1][1], m_mat[1][2]);
+	}
+	// left axis
+	vector3 getXDirection() const
+	{
+		return vector3(m_mat[0][0], m_mat[0][1], m_mat[0][2]);
+	}
+
+	vector3 getTranslation() const
+	{
+		return vector3(m_mat[3][0], m_mat[3][1], m_mat[3][2]);
+	}
+
+	vector3 getScale() const
+	{
+		return vector3(m_mat[0][0], m_mat[1][1], m_mat[2][2]);
+	}
+
+	/*
+	vector3 getRotation()
+	{
+		return vector3();
+	}
+	*/
+	
+	// static functions
+	static matrix4x4 zeroMatrix()
+	{
+		matrix4x4 temp;
+		temp.setZero();
+		return temp;
+	}
 
 	static matrix4x4 identityMatrix()
 	{
@@ -205,6 +231,4 @@ public:
 		temp.setIdentity();
 		return temp;
 	}
-
-	float m_mat[4][4] = {};
 };
