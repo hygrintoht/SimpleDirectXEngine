@@ -119,5 +119,6 @@ bool gameObjectManager::getFirstPlay()
 
 void gameObjectManager::firstPlay()
 {
-	m_isFirstPlay = true;
+	serializer::saveScene(m_current_scene_filepath);
+	m_isFirstPlay = true;	
 }

@@ -29,7 +29,6 @@ public:
 	void drawUI();
 	HWND getWindowHandle();
 	swapChain* getSwapChain();
-
 	void toggleUIScreen(std::string _uiName);
 
 	static constexpr int WINDOW_WIDTH = 1440;

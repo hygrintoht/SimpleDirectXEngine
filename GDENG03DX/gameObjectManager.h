@@ -46,6 +46,6 @@ private:
 
 	gameObject* m_selected_object = nullptr;
 
-	std::string m_current_scene_filepath = "sample.json";
+	std::string m_current_scene_filepath = "GOMSCENE.json";
 	bool m_isFirstPlay = false;
 };

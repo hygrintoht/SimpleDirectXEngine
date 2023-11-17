@@ -88,15 +88,12 @@ void uiManager::drawUI()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
-	//ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
-	//ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
+	ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
 	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
 	for (auto& m_ui : this->m_ui_list)
 	{
 		m_ui->drawUI();
 	}
-	//ImGui::End();
 }
 
 HWND uiManager::getWindowHandle()
