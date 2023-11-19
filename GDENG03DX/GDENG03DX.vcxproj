@@ -104,13 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\trist\vcpkg\packages\jsoncpp_x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\trist\vcpkg\packages\jsoncpp_x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)GDENG03DX\jsoncpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="appWindow.cpp" />
+    <ClCompile Include="component.cpp" />
     <ClCompile Include="constantBuffer.cpp" />
     <ClCompile Include="cubeObject.cpp" />
     <ClCompile Include="deviceContext.cpp" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="appWindow.h" />
+    <ClInclude Include="component.h" />
     <ClInclude Include="constantBuffer.h" />
     <ClInclude Include="cubeObject.h" />
     <ClInclude Include="deviceContext.h" />
@@ -192,7 +194,7 @@
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="serializer.h" />
     <ClInclude Include="swapChain.h" />
-    <ClInclude Include="tiny_obj_loader.h" />
+    <ClInclude Include="tinyobjloader\tiny_obj_loader.h" />
     <ClInclude Include="uiEngineProfiler.h" />
     <ClInclude Include="uiInspector.h" />
     <ClInclude Include="uiManager.h" />

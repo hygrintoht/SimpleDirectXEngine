@@ -31,7 +31,7 @@ void serializer::saveScene()
     if (GetSaveFileName(&ofn)) 
     {
         std::wstring filepathW = szFile;
-        filepath = std::string(filepathW.begin(), filepathW.end());
+        filepath = std::string(filepathW.begin(), filepathW.end()) + ".json";
     }
 
     save(filepath);
@@ -90,9 +90,7 @@ void serializer::save(std::string filepath)
             for (int i = 0; i < 4; i++)
             {
                 json_transform.append(game_object->m_transform.m_mat[i][j]);
-                //std::printf("%+04f ", game_object->m_transform.m_mat[i][j]);
             }
-            //std::cout << std::endl;
         }
         json_game_object["transform"] = json_transform;
         // additional attributes for game object extensions
@@ -102,18 +100,13 @@ void serializer::save(std::string filepath)
             json_game_object["filename"] = mesh_object->getFilePath();
         }
         json_scene["scene"].append(json_game_object);
-        //std::cout << std::endl;
     }
 
     Json::StreamWriterBuilder writer;
     std::string jsonString = Json::writeString(writer, json_scene);
 
-    // Print the serialized JSON object
-    //std::cout << jsonString << std::endl;
-
     // save to file stream
     std::ofstream file(filepath);
-    //std::ofstream file("sample.json");
 
 
     if (!file.is_open()) {

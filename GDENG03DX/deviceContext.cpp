@@ -27,9 +27,6 @@ void deviceContext::clearRenderTargetColor(swapChain* swap_chain, float red, flo
 	m_device_context->ClearRenderTargetView(swap_chain->m_render_target_view, clear_color);
 	m_device_context->ClearDepthStencilView(swap_chain->m_depth_stencil_view, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1, 0);
 	m_device_context->OMSetRenderTargets(1, &swap_chain->m_render_target_view, swap_chain->m_depth_stencil_view);
-	m_device_context->PSSetShaderResources(0, 1, &swap_chain->m_texture_shader_resource_view);
-	m_device_context->PSSetSamplers(0, 1, &swap_chain->m_sampler_state);
-	
 }
 
 void deviceContext::setVertexBuffer(vertexBuffer* vertex_buffer)

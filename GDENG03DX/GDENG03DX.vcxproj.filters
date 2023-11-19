@@ -202,6 +202,7 @@
       <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
     </ClCompile>
     <ClCompile Include="serializer.cpp" />
+    <ClCompile Include="component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -294,9 +295,6 @@
     <ClInclude Include="Imgui\imstb_truetype.h">
       <Filter>Externals\Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="tiny_obj_loader.h">
-      <Filter>Externals\Tinyobjloader</Filter>
-    </ClInclude>
     <ClInclude Include="gameObjectManager.h">
       <Filter>GameEngine\GameObject\GameObjectManager</Filter>
     </ClInclude>
@@ -323,6 +321,8 @@
     </ClInclude>
     <ClInclude Include="serializer.h" />
     <ClInclude Include="quaternion.h" />
+    <ClInclude Include="component.h" />
+    <ClInclude Include="tinyobjloader\tiny_obj_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="pixelShader.hlsl">
