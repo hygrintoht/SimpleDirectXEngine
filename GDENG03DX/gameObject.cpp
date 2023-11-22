@@ -94,3 +94,75 @@ void gameObject::setRotation(vector3 rotation)
 {
 	m_transform.setRotation(rotation);
 }
+
+void gameObject::attachComponent(component* component)
+{
+	this->m_componentList.push_back(component);
+	component->attachOwner(this);
+}
+
+void gameObject::detachComponent(component* component)
+{
+	for (int i = 0; i < this->m_componentList.size(); i++) 
+	{
+		if (this->m_componentList[i] == component) 
+		{
+			this->m_componentList.erase(this->m_componentList.begin() + i);
+			break;
+		}
+	}
+}
+
+component* gameObject::findComponentByName(std::string name)
+{
+	for (auto* m_component : m_componentList) 
+	{
+		if (m_component->getName() == name)
+		{
+			return m_component;
+		}
+	}
+
+	return NULL;
+}
+
+component* gameObject::findComponentOfType(component::componentType type, std::string name)
+{
+	for (auto* m_component : m_componentList) 
+	{
+		if (m_component->getName() == name && m_component->getType() == type) 
+		{
+			return m_component;
+		}
+	}
+
+	return NULL;
+}
+
+std::vector<component*> gameObject::getComponentsOfType(component::componentType type)
+{
+	std::vector<component*> componentsOfType;
+	for (auto* m_component : m_componentList) 
+	{
+		if (m_component->getType() == type) 
+		{
+			componentsOfType.push_back(m_component);
+		}
+	}
+
+	return componentsOfType;
+}
+
+std::vector<component*> gameObject::getComponentsOfTypeRecursive(component::componentType type)
+{
+	std::vector<component*> componentsOfType;
+	for (auto* m_component : m_componentList) 
+	{
+		if (m_component->getType() == type) 
+		{
+			componentsOfType.push_back(m_component);
+		}
+	}
+
+	return componentsOfType;
+}

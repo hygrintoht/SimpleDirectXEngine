@@ -6,6 +6,9 @@
 #include "gameObjectManager.h"
 #include "graphicsEngine.h"
 #include "meshObject.h"
+#include "physicsComponent.h"
+#include "physicsMeshObject.h"
+#include "physicsPlaneObject.h"
 #include "serializer.h"
 #include "uiManager.h"
 
@@ -92,6 +95,50 @@ void uiToolbar::drawUI()
 
 				mesh_object->loadVertexBuffer(shader_byte_code, size_shader);
 			}
+			if (ImGui::MenuItem("create PhysicsCube"))
+			{
+				for (int i = 0; i < 1; i++)
+				{
+					auto* physics_object = new physicsMeshObject("createdPhysicsCube" + std::to_string(objectCounter));
+					objectCounter++;
+
+					gameObjectManager::get()->addObject(physics_object);
+
+					void* shader_byte_code = nullptr;
+					size_t size_shader = 0;
+
+					graphicsEngine::get()->getVertexShaderData(&shader_byte_code, &size_shader);
+
+					physics_object->loadVertexBuffer(shader_byte_code, size_shader);
+				}
+			}
+			if (ImGui::MenuItem("create PhysicsPlane"))
+			{
+				auto* physics_object = new physicsPlaneObject("createdPhysicsPlane" + std::to_string(objectCounter));
+				objectCounter++;
+
+				//physics_object->m_transform.setTranslation(vector3(0.0f, -5.0f, 0.0f));
+				//physics_object->m_transform.setScale(vector3(5.0f, 1.0f, 5.0f));
+				//physicsComponent* component = (physicsComponent*)physics_object->findComponentOfType(component::componentType::Physics, "PlaneComponent");
+				//component->getRigidBody()->setType(BodyType::KINEMATIC);
+
+				//physics_object->setPosition(vector3(0.0f, -5.0f, 0.0f));
+				//physics_object->setScale(vector3(32.0f, 0.2f, 32.0f));
+
+				physicsComponent* component = (physicsComponent*)physics_object->findComponentOfType(component::componentType::Physics, "PhysicsComponent");
+				component->getRigidBody()->setType(BodyType::KINEMATIC);
+
+				gameObjectManager::get()->addObject(physics_object);
+
+				void* shader_byte_code = nullptr;
+				size_t size_shader = 0;
+
+				graphicsEngine::get()->getVertexShaderData(&shader_byte_code, &size_shader);
+
+				physics_object->loadVertexBuffer(shader_byte_code, size_shader);
+			}
+
+
 			if (ImGui::MenuItem("Create Light")) {}
 			ImGui::EndMenu();
 		}

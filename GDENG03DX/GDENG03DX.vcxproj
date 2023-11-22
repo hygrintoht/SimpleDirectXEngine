@@ -102,15 +102,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)jsoncpp\include;$(ProjectDir)reactphysics3d\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)GDENG03DX\jsoncpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;jsoncpp.lib;reactphysics3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)jsoncpp\lib;$(ProjectDir)reactphysics3d\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="appWindow.cpp" />
+    <ClCompile Include="baseComponentSystem.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="constantBuffer.cpp" />
     <ClCompile Include="cubeObject.cpp" />
@@ -150,6 +151,10 @@
     <ClCompile Include="inputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meshObject.cpp" />
+    <ClCompile Include="physicsComponent.cpp" />
+    <ClCompile Include="physicsMeshObject.cpp" />
+    <ClCompile Include="physicsPlaneObject.cpp" />
+    <ClCompile Include="physicsSystem.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="quadObject.cpp" />
     <ClCompile Include="serializer.cpp" />
@@ -166,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="appWindow.h" />
+    <ClInclude Include="baseComponentSystem.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="constantBuffer.h" />
     <ClInclude Include="cubeObject.h" />
@@ -188,6 +194,10 @@
     <ClInclude Include="mathUtils.h" />
     <ClInclude Include="matrix4x4.h" />
     <ClInclude Include="meshObject.h" />
+    <ClInclude Include="physicsComponent.h" />
+    <ClInclude Include="physicsMeshObject.h" />
+    <ClInclude Include="physicsPlaneObject.h" />
+    <ClInclude Include="physicsSystem.h" />
     <ClInclude Include="pixelShader.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="quadObject.h" />

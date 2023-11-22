@@ -1,4 +1,5 @@
 #pragma once
+#include "component.h"
 #include "mathUtils.h"
 #include "vector"
 #include "string"
@@ -40,6 +41,14 @@ public:
 	void setScale(vector3 scale);
 	void setRotation(vector3 rotation);
 
+	void attachComponent(component* component);
+	void detachComponent(component* component);
+
+	component* findComponentByName(std::string name);
+	component* findComponentOfType(component::componentType type, std::string name);
+	std::vector<component*> getComponentsOfType(component::componentType type);
+	std::vector<component*> getComponentsOfTypeRecursive(component::componentType type);
+
 private:
 
 	//buffer data
@@ -57,4 +66,6 @@ protected:
 	//mesh data
 	std::vector<vertex> m_vertex_list; // list of object vertices
 	std::vector<unsigned int> m_index_list; // list of object indices
+
+	std::vector<component*> m_componentList;
 };

@@ -17,7 +17,6 @@ public:
     double m_w = 1, m_x = 0, m_y = 0, m_z = 0;
 
     // operator overloads
-    /*
     quaternion operator +(const quaternion& _quaternion) const
     {
         return quaternion(m_w + _quaternion.m_w, m_x + _quaternion.m_x, m_y + _quaternion.m_y, m_z + _quaternion.m_z);
@@ -27,7 +26,6 @@ public:
     {
         return quaternion(m_w - _quaternion.m_w, m_x - _quaternion.m_x, m_y - _quaternion.m_y, m_z - _quaternion.m_z);
     }
-	*/
     
     quaternion operator *(const quaternion& _quaternion) const
     {

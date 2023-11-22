@@ -17,7 +17,7 @@ public:
 	
 	float m_mat[4][4] = {};
 	// operator overloads
-	void operator *=(const matrix4x4& matrix)
+	matrix4x4 operator * (const matrix4x4& matrix)
 	{
 		matrix4x4 out;
 		for (int i = 0; i < 4; i++)
@@ -26,6 +26,23 @@ public:
 			{
 				out.m_mat[i][j] =
 					m_mat[i][0] * matrix.m_mat[0][j]
+					+ m_mat[i][1] * matrix.m_mat[1][j]
+					+ m_mat[i][2] * matrix.m_mat[2][j]
+					+ m_mat[i][3] * matrix.m_mat[3][j];
+			}
+		}
+		return out;
+	}
+
+	void operator *= (const matrix4x4& matrix)
+	{
+		matrix4x4 out;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				out.m_mat[i][j] =
+					  m_mat[i][0] * matrix.m_mat[0][j]
 					+ m_mat[i][1] * matrix.m_mat[1][j]
 					+ m_mat[i][2] * matrix.m_mat[2][j]
 					+ m_mat[i][3] * matrix.m_mat[3][j];
@@ -230,5 +247,104 @@ public:
 		matrix4x4 temp;
 		temp.setIdentity();
 		return temp;
+	}
+
+	void setMatrixFromGLMatrix(float matrix[16])
+	{
+		matrix4x4 temp;
+		//matrix4x4 scale;
+		//scale.setIdentity();
+		//scale.setScale(this->getScale());
+		
+		temp.m_mat[0][0] = matrix[0];
+		temp.m_mat[0][1] = matrix[1];
+		temp.m_mat[0][2] = matrix[2];
+		temp.m_mat[0][3] = matrix[3];
+		temp.m_mat[1][0] = matrix[4];
+		temp.m_mat[1][1] = matrix[5];
+		temp.m_mat[1][2] = matrix[6];
+		temp.m_mat[1][3] = matrix[7];
+		temp.m_mat[2][0] = matrix[8];
+		temp.m_mat[2][1] = matrix[9];
+		temp.m_mat[2][2] = matrix[10];
+		temp.m_mat[2][3] = matrix[11];
+		temp.m_mat[3][0] = matrix[12];
+		temp.m_mat[3][1] = matrix[13];
+		temp.m_mat[3][2] = matrix[14];
+		temp.m_mat[3][3] = matrix[15];
+
+		*this = temp;
+
+		//*this *= scale;
+
+		//*this *= temp;
+		/*
+		matrix4x4 newMat = temp;
+		matrix4x4 scale;
+		scale.setIdentity();
+		scale.setScale(this->getScale());
+		matrix4x4 trans;
+		trans.setIdentity();
+		trans.setTranslation(this->getTranslation());
+		*this = scale.multiplyTo(trans.multiplyTo(newMat));
+		*/
+
+	}
+
+	matrix4x4 getGLMatrixFromMatrix()
+	{
+		/*
+		float matrix[16];
+		matrix[0] = 1.0f;//m_mat[0][0];
+		matrix[1] = m_mat[0][1];
+		matrix[2] = m_mat[0][2];
+		matrix[3] = m_mat[0][3];
+		matrix[4] = m_mat[1][0];
+		matrix[5] = 1.0f;//m_mat[1][1];
+		matrix[6] = m_mat[1][2];
+		matrix[7] = m_mat[1][3];
+		matrix[8] = m_mat[2][0];
+		matrix[9] = m_mat[2][1];
+		matrix[10] = 1.0f;//m_mat[2][2];
+		matrix[11] = m_mat[2][3];
+		matrix[12] = m_mat[3][0];
+		matrix[13] = m_mat[3][1];
+		matrix[14] = m_mat[3][2];
+		matrix[15] = 1.0f;//m_mat[3][3];
+
+		return matrix;
+		*/
+
+		matrix4x4 temp = *this;
+		temp.m_mat[0][0] = 1.0f;
+		temp.m_mat[1][1] = 1.0f;
+		temp.m_mat[2][2] = 1.0f;
+		temp.m_mat[3][3] = 1.0f;
+
+		return temp;
+		/*
+		matrix4x4 allMatrix, translationMatrix, scaleMatrix;
+		allMatrix.setIdentity();
+		translationMatrix.setIdentity();
+		translationMatrix.setTranslation(this->getLocalPosition());
+		scaleMatrix.setScale(vector3(1.0f,1.0f,1.0f)); //physics 3D only accepts uniform scale for rigidbody
+		vector3 rotation = this->get
+		Matrix4x4 xMatrix; xMatrix.setRotationX(rotation.getX());
+		Matrix4x4 yMatrix; yMatrix.setRotationY(rotation.getY());
+		Matrix4x4 zMatrix; zMatrix.setRotationZ(rotation.getZ());
+		*/
+	}
+	matrix4x4 multiplyTo(matrix4x4 matrix)
+	{
+		matrix4x4 out;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				out.m_mat[i][j] =
+					this->m_mat[i][0] * matrix.m_mat[0][j] + this->m_mat[i][1] * matrix.m_mat[1][j] +
+					this->m_mat[i][2] * matrix.m_mat[2][j] + this->m_mat[i][3] * matrix.m_mat[3][j];
+			}
+		}
+
+		return out;
 	}
 };

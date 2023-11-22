@@ -73,9 +73,6 @@
     <Filter Include="Externals\Tinyobjloader">
       <UniqueIdentifier>{3e54a88a-6bdd-45ee-8c36-dfde4d430ee0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GameObject\GameObjectManager">
-      <UniqueIdentifier>{3d172420-6296-4414-8b6c-c1e58f5ebedb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\UserInterface\UIManager">
       <UniqueIdentifier>{98ae0b1f-eae4-41e3-ae83-42f728a43b99}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,24 @@
     </Filter>
     <Filter Include="GameEngine\GameObject\GameObjects\MeshObject">
       <UniqueIdentifier>{b4bd94e1-cbca-49a6-af2d-b5d95fe7ad06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\Component">
+      <UniqueIdentifier>{6f801912-85cf-45e7-bf96-24201c5cfcaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\Component\PhysicsComponent">
+      <UniqueIdentifier>{9570a1d7-f06b-419d-85d0-7adf332973e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\PhysicsSystem">
+      <UniqueIdentifier>{225b7707-f5f9-4a16-94c5-685562b7628d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh">
+      <UniqueIdentifier>{f2a22176-94b2-4ed7-9272-1a9010e6d882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\GameObjects\GameObjectManager">
+      <UniqueIdentifier>{3d172420-6296-4414-8b6c-c1e58f5ebedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\Component\BaseComponentSystem">
+      <UniqueIdentifier>{e5c8d865-bd15-4fb7-b560-9e161739d43d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +196,7 @@
       <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="gameObjectManager.cpp">
-      <Filter>GameEngine\GameObject\GameObjectManager</Filter>
+      <Filter>GameEngine\GameObject\GameObjects\GameObjectManager</Filter>
     </ClCompile>
     <ClCompile Include="uiManager.cpp">
       <Filter>GameEngine\UserInterface\UIManager</Filter>
@@ -202,7 +217,22 @@
       <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
     </ClCompile>
     <ClCompile Include="serializer.cpp" />
-    <ClCompile Include="component.cpp" />
+    <ClCompile Include="component.cpp">
+      <Filter>GameEngine\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="baseComponentSystem.cpp">
+      <Filter>GameEngine\GameObject\Component\BaseComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="physicsComponent.cpp">
+      <Filter>GameEngine\GameObject\Component\PhysicsComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="physicsSystem.cpp">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="physicsMeshObject.cpp">
+      <Filter>GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="physicsPlaneObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -296,7 +326,7 @@
       <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="gameObjectManager.h">
-      <Filter>GameEngine\GameObject\GameObjectManager</Filter>
+      <Filter>GameEngine\GameObject\GameObjects\GameObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="uiManager.h">
       <Filter>GameEngine\UserInterface\UIManager</Filter>
@@ -320,9 +350,28 @@
       <Filter>GameEngine\UserInterface\UIScreen\WorldOutliner</Filter>
     </ClInclude>
     <ClInclude Include="serializer.h" />
-    <ClInclude Include="quaternion.h" />
-    <ClInclude Include="component.h" />
-    <ClInclude Include="tinyobjloader\tiny_obj_loader.h" />
+    <ClInclude Include="tinyobjloader\tiny_obj_loader.h">
+      <Filter>Externals\Tinyobjloader</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>GameEngine\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="baseComponentSystem.h">
+      <Filter>GameEngine\GameObject\Component\BaseComponentSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="physicsComponent.h">
+      <Filter>GameEngine\GameObject\Component\PhysicsComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="physicsSystem.h">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="quaternion.h">
+      <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="physicsMeshObject.h">
+      <Filter>GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="physicsPlaneObject.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="pixelShader.hlsl">

@@ -27,6 +27,10 @@ public:
 	void setPixelShader(pixelShader* pixel_shader);
 	void setConstantBuffer(vertexShader* vertex_shader, constantBuffer* buffer);
 	void setConstantBuffer(pixelShader* pixel_shader, constantBuffer* buffer);
+	void setRenderTargetToDefault();
+	void copyRTVTextureToSRVTexture(swapChain* swap_chain);
+	//void createRenderTargetTexture(int windowWidth, int windowHeight);
+
 	ID3D11DeviceContext* getDeviceContext();
 private:
 	ID3D11DeviceContext* m_device_context;

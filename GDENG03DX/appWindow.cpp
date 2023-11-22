@@ -5,6 +5,7 @@
 #include "Imgui/imgui_impl_win32.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
+#include "baseComponentSystem.h"
 #include "tinyobjloader/tiny_obj_loader.h"
 
 #include "string"
@@ -20,7 +21,7 @@
 #include "engineTime.h"
 #include "gameObjectManager.h"
 #include "inputSystem.h"
-
+#include "physicsSystem.h"
 #include "uiManager.h"
 
 appWindow::appWindow()
@@ -44,12 +45,19 @@ void appWindow::onCreate()
 	window::onCreate();						//create window
 	inputSystem::get()->addListener(this);	// add app window as listener (removed because on focus handles that)
 	graphicsEngine::get()->init();			//initialize engine
+	baseComponentSystem::get()->init();
 	gameObjectManager::get();
+
+	//physicsSystem test;
 
 	m_swap_chain = graphicsEngine::get()->createSwapChain(); // initialize swap chain
 
 	const RECT rect = this->getClientWindowRect(); // get window data
-	m_swap_chain->init(this->m_hwnd, rect.right - rect.left, rect.bottom - rect.top); //window setup
+	
+	if (m_swap_chain->init(this->m_hwnd, rect.right - rect.left, rect.bottom - rect.top)) //window setup
+		std::cout << "wow" << std::endl;
+	else
+		std::cout << "mom" << std::endl;
 
 	m_world_camera.setTranslation(vector3(0, 0, -2));
 
@@ -161,7 +169,7 @@ void appWindow::onUpdate()
 
 	//update
 
-	uiManager::get()->drawUI();
+	
 
 	RECT rect = this->getClientWindowRect(); // get window rect data
 	graphicsEngine::get()->getImmediateDeviceContext()->setViewPortSize(rect.right - rect.left, rect.bottom - rect.top); // update viewport
@@ -193,11 +201,24 @@ void appWindow::onUpdate()
 
 	world_camera_temp.inverse();
 
+	// update game objects
 	gameObjectManager::get()->update(world_camera_temp, rect.top, rect.bottom, rect.right, rect.left);
 	gameObjectManager::get()->draw(m_vertex_shader, m_pixel_shader);
 
+	baseComponentSystem::get()->getPhysicsSystem()->updateAllComponents();
+
+	// draw ui
+	uiManager::get()->drawUI();
+
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+	// reset rtv
+	//graphicsEngine::get()->getImmediateDeviceContext()->setRenderTargetToDefault();
+
+	// copy renderTargetTexture to sceneShaderResourceView
+	//graphicsEngine::get()->getImmediateDeviceContext()->copyRTVTextureToSRVTexture(m_swap_chain);
+	//m_swap_chain->genereateSceneTexture();
 
 	// start: render to texture test
 
@@ -224,8 +245,9 @@ void appWindow::onDestroy()
 	ImGui::DestroyContext();
 
 	graphicsEngine::get()->releaseCompiledShader();
-
 	graphicsEngine::get()->release();
+
+
 }
 
 void appWindow::onFocus()

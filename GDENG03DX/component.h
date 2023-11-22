@@ -5,6 +5,7 @@ class gameObject;
 
 class component
 {
+public:
 	enum componentType
 	{
 		NotSet = -1,
