@@ -97,7 +97,7 @@ void uiToolbar::drawUI()
 			}
 			if (ImGui::MenuItem("create PhysicsCube"))
 			{
-				for (int i = 0; i < 1; i++)
+				for (int i = 0; i < 10; i++)
 				{
 					auto* physics_object = new physicsMeshObject("createdPhysicsCube" + std::to_string(objectCounter));
 					objectCounter++;

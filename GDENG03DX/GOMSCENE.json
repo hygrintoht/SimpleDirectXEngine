@@ -2,79 +2,8 @@
 	"scene" : 
 	[
 		{
-			"name" : "test0",
-			"transform" : 
-			[
-				1.0,
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			],
-			"type" : 2
-		},
-		{
 			"filename" : "cube.obj",
-			"name" : "meshCube",
-			"transform" : 
-			[
-				1.0,
-				0.0,
-				0.0,
-				-1.5,
-				0.0,
-				1.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-3.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			],
-			"type" : 1
-		},
-		{
-			"filename" : "cube.obj",
-			"name" : "createdPhysicsCube0",
-			"transform" : 
-			[
-				1.0,
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				5.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			],
-			"type" : 1
-		},
-		{
-			"filename" : "cube.obj",
-			"name" : "createdPhysicsPlane1",
+			"name" : "createdPhysicsPlane11",
 			"transform" : 
 			[
 				1.0,
@@ -98,7 +27,7 @@
 		},
 		{
 			"filename" : "cube.obj",
-			"name" : "createdPhysicsCube2",
+			"name" : "createdPhysicsCube12",
 			"transform" : 
 			[
 				1.0,
@@ -122,7 +51,7 @@
 		},
 		{
 			"filename" : "cube.obj",
-			"name" : "createdPhysicsCube3",
+			"name" : "createdPhysicsCube13",
 			"transform" : 
 			[
 				1.0,
@@ -146,7 +75,7 @@
 		},
 		{
 			"filename" : "cube.obj",
-			"name" : "createdPhysicsCube4",
+			"name" : "createdPhysicsCube14",
 			"transform" : 
 			[
 				1.0,
@@ -170,7 +99,151 @@
 		},
 		{
 			"filename" : "cube.obj",
-			"name" : "createdPhysicsCube5",
+			"name" : "createdPhysicsCube15",
+			"transform" : 
+			[
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				5.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdPhysicsCube16",
+			"transform" : 
+			[
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				5.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdPhysicsCube17",
+			"transform" : 
+			[
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				5.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdPhysicsCube18",
+			"transform" : 
+			[
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				5.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdPhysicsCube19",
+			"transform" : 
+			[
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				5.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdPhysicsCube20",
+			"transform" : 
+			[
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				5.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdPhysicsCube21",
 			"transform" : 
 			[
 				1.0,
