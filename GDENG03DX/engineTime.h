@@ -10,6 +10,8 @@ public:
 	double getDeltaTime();
 	double getRunningTime();
 	double getRunningTimeAsMilliseconds();
+	double getAverageFrameTime();
+	double getAverageFPS();
 	void togglePause();
 	bool isPaused();
 
@@ -26,6 +28,9 @@ private:
 
 	double deltaTime = 0;
 	double runningTime = 0;
+
+	float m_average_frame_time = 0;
+	float m_average_fps = 0;
 
 	bool paused = true;
 

@@ -24,6 +24,8 @@ public:
 	std::vector<physicsComponent*> getAllComponents();
 
 	void updateAllComponents(); // unfinished
+	void timeStep();
+
 	PhysicsWorld* getPhysicsWorld();
 	PhysicsCommon* getPhysicsCommon();
 

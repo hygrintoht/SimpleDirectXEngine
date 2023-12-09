@@ -68,15 +68,15 @@ public:
 
     matrix4x4 toRotationMatrix() const
 	{
-        double xx = m_x * m_x;
-        double yy = m_y * m_y;
-        double zz = m_z * m_z;
-        double xy = m_x * m_y;
-        double xz = m_x * m_z;
-        double yz = m_y * m_z;
-        double wx = m_w * m_x;
-        double wy = m_w * m_y;
-        double wz = m_w * m_z;
+        float xx = m_x * m_x;
+        float yy = m_y * m_y;
+        float zz = m_z * m_z;
+        float xy = m_x * m_y;
+        float xz = m_x * m_z;
+        float yz = m_y * m_z;
+        float wx = m_w * m_x;
+        float wy = m_w * m_y;
+        float wz = m_w * m_z;
 
         float mat[4][4] =
         {
@@ -87,7 +87,7 @@ public:
         };
 
         matrix4x4 temp;
-        memcpy(temp.m_mat, mat, 4 * sizeof(float));
+        memcpy(temp.m_mat, mat, 4 * 4 * sizeof(float));
         return temp;
     }
     // static functions
@@ -150,5 +150,39 @@ public:
                                                     0.25 * s
             );
         }
+    }
+
+    void rotateByEulerAngles(float roll, float pitch, float yaw) // roll pitch yaw
+	{
+        quaternion qx(std::cos(roll / 2), std::sin(roll / 2), 0.0, 0.0);
+        quaternion qy(std::cos(pitch / 2), 0.0, std::sin(pitch / 2), 0.0);
+        quaternion qz(std::cos(yaw / 2), 0.0, 0.0, std::sin(yaw / 2));
+
+        *this = qx * qy * qz * (*this);
+    }
+
+    void rotateByEulerAngles(vector3 vector)
+    {
+        rotateByEulerAngles(vector.m_x, vector.m_y, vector.m_z);
+    }
+
+    static vector3 quaternionToEulerAngles(const quaternion& _quaternion) {
+        vector3 out;
+
+        double sinr_cosp = 2 * (_quaternion.m_w * _quaternion.m_x + _quaternion.m_y * _quaternion.m_z);
+        double cosr_cosp = 1 - 2 * (_quaternion.m_x * _quaternion.m_x + _quaternion.m_y * _quaternion.m_y);
+        out.m_x = std::atan2(sinr_cosp, cosr_cosp);
+
+        double sinp = 2 * (_quaternion.m_w * _quaternion.m_y - _quaternion.m_z * _quaternion.m_x);
+        if (std::abs(sinp) >= 1)
+            out.m_y = std::copysign(3.1415f / 2, sinp);
+        else
+            out.m_y = std::asin(sinp);
+
+        double siny_cosp = 2 * (_quaternion.m_w * _quaternion.m_z + _quaternion.m_x * _quaternion.m_y);
+        double cosy_cosp = 1 - 2 * (_quaternion.m_y * _quaternion.m_y + _quaternion.m_z * _quaternion.m_z);
+        out.m_z = std::atan2(siny_cosp, cosy_cosp);
+
+        return out;
     }
 };

@@ -1,0 +1,19 @@
+{
+	"thing": 
+	[
+		{
+			"type": 2,
+			"name": "test",
+			"position": [1.5, 1.5, 1.5],
+			"scale": [1, 1, 1],
+			"rotation": [45, 45, 45]
+		},
+		{
+			"type": 1,
+			"name": "test2",
+			"position": [0, 0, 0],
+			"scale": [1, 1, 1],
+			"rotation": [0, 0, 0]
+		}
+	]
+}

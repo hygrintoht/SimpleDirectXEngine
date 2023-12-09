@@ -37,6 +37,8 @@ public:
 	void operator *= (const matrix4x4& matrix)
 	{
 		matrix4x4 out;
+		//out = *this * out;
+		
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 4; j++)
@@ -48,12 +50,18 @@ public:
 					+ m_mat[i][3] * matrix.m_mat[3][j];
 			}
 		}
+
 		setMatrix(out);
 	}
 	// set functions
 	void setZero()
 	{
 		memset(m_mat, 0, sizeof(float) * 16);
+	}
+
+	void setOne()
+	{
+		memset(m_mat, 1, sizeof(float) * 16);
 	}
 
 	void setIdentity()
@@ -110,6 +118,7 @@ public:
 
 	void setRotation(const vector3& rotation) //note: xyz rotation
 	{
+		/*
 		float x = rotation.m_x;
 		float y = rotation.m_y;
 		float z = rotation.m_z;
@@ -123,6 +132,10 @@ public:
 		m_mat[2][0] = cos(x) * sin(y) * cos(z) + sin(x) * sin(z);
 		m_mat[2][1] = cos(x) * sin(y) * sin(z) - sin(x) * cos(z);
 		m_mat[2][2] = cos(x) * cos(y);
+		*/
+		this->setRotationZ(rotation.m_z);
+		this->setRotationX(rotation.m_x);
+		this->setRotationY(rotation.m_y);
 	}
 
 	void inverse()
@@ -249,9 +262,9 @@ public:
 		return temp;
 	}
 
-	void setMatrixFromGLMatrix(float matrix[16])
+	void setMatrixFromGLMatrix(float matrix[16], vector3 local_scale)
 	{
-		matrix4x4 temp;
+		matrix4x4 temp; // position and rotation matrix
 		//matrix4x4 scale;
 		//scale.setIdentity();
 		//scale.setScale(this->getScale());
@@ -273,7 +286,15 @@ public:
 		temp.m_mat[3][2] = matrix[14];
 		temp.m_mat[3][3] = matrix[15];
 
-		*this = temp;
+		matrix4x4 scale; // scale matrix
+		scale.setIdentity();
+		scale.setScale(local_scale);
+		//scale.setIdentity();
+		//scale.setScale(this->getScale());
+		
+		*this = scale * temp; // cross
+
+		//*this = temp;
 
 		//*this *= scale;
 
@@ -347,4 +368,5 @@ public:
 
 		return out;
 	}
+
 };

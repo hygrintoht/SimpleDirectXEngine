@@ -29,6 +29,16 @@ double engineTime::getRunningTimeAsMilliseconds()
 	return runningTime * 1000;
 }
 
+double engineTime::getAverageFrameTime()
+{
+	return m_average_frame_time;
+}
+
+double engineTime::getAverageFPS()
+{
+	return m_average_fps;
+}
+
 void engineTime::logFrameStart()
 {
 
@@ -47,6 +57,9 @@ void engineTime::logFrameEnd()
 	{
 		deltaTime = 0;
 	}
+
+	m_average_frame_time = (m_average_frame_time + getDeltaTime()) / 2.0f;
+	m_average_fps = 1.0f / m_average_frame_time;
 }
 
 void engineTime::togglePause()

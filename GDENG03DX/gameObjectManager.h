@@ -33,6 +33,7 @@ public:
 	void setSelectedObject(std::string name);
 	void setSelectedObject(gameObject* game_object);
 	gameObject* getSelectedObject();
+	void deselectObject();
 	// scene reload
 	void reloadScene();
 	bool getFirstPlay();

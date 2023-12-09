@@ -29,7 +29,12 @@ void physicsSystem::registerComponent(physicsComponent* component)
 
 void physicsSystem::unregisterComponent(physicsComponent* component)
 {
-	unregisterComponent(component->getName());
+	for (int i = 0; i < m_componentList.size(); i++)
+	{
+		if (m_componentList[i] == component)
+			m_componentList.erase(m_componentList.begin() + i);
+	}
+	m_componentTable.erase(component->getName());
 }
 
 void physicsSystem::unregisterComponent(std::string name)
@@ -61,6 +66,15 @@ void physicsSystem::updateAllComponents()
 		for (auto* component : m_componentList)
 			component->perform(engineTime::get()->getDeltaTime());
 	}
+}
+
+void physicsSystem::timeStep()
+{
+	float delta = 0.013f;
+
+	this->m_physicsWorld->update(delta);
+	for (auto* component : m_componentList)
+		component->perform(delta);
 }
 
 PhysicsWorld* physicsSystem::getPhysicsWorld()

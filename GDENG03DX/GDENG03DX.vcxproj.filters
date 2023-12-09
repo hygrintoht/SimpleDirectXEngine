@@ -103,20 +103,20 @@
     <Filter Include="GameEngine\GameObject\GameObjects\MeshObject">
       <UniqueIdentifier>{b4bd94e1-cbca-49a6-af2d-b5d95fe7ad06}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GameObject\Component">
-      <UniqueIdentifier>{6f801912-85cf-45e7-bf96-24201c5cfcaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GameObject\Component\PhysicsComponent">
-      <UniqueIdentifier>{9570a1d7-f06b-419d-85d0-7adf332973e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\PhysicsSystem">
       <UniqueIdentifier>{225b7707-f5f9-4a16-94c5-685562b7628d}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh">
       <UniqueIdentifier>{f2a22176-94b2-4ed7-9272-1a9010e6d882}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GameObject\GameObjects\GameObjectManager">
+    <Filter Include="GameEngine\GameObject\GameObjectManager">
       <UniqueIdentifier>{3d172420-6296-4414-8b6c-c1e58f5ebedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\Component">
+      <UniqueIdentifier>{6f801912-85cf-45e7-bf96-24201c5cfcaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObject\Component\PhysicsComponent">
+      <UniqueIdentifier>{9570a1d7-f06b-419d-85d0-7adf332973e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameEngine\GameObject\Component\BaseComponentSystem">
       <UniqueIdentifier>{e5c8d865-bd15-4fb7-b560-9e161739d43d}</UniqueIdentifier>
@@ -196,7 +196,7 @@
       <Filter>Externals\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="gameObjectManager.cpp">
-      <Filter>GameEngine\GameObject\GameObjects\GameObjectManager</Filter>
+      <Filter>GameEngine\GameObject\GameObjectManager</Filter>
     </ClCompile>
     <ClCompile Include="uiManager.cpp">
       <Filter>GameEngine\UserInterface\UIManager</Filter>
@@ -232,7 +232,16 @@
     <ClCompile Include="physicsMeshObject.cpp">
       <Filter>GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh</Filter>
     </ClCompile>
-    <ClCompile Include="physicsPlaneObject.cpp" />
+    <ClCompile Include="unitySerializer.cpp" />
+    <ClCompile Include="physicsPlaneObject.cpp">
+      <Filter>GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="uiDebugConsole.cpp">
+      <Filter>GameEngine\UserInterface\UIScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="debugLog.cpp" />
+    <ClCompile Include="eventGameObjectTransform.cpp" />
+    <ClCompile Include="eventHistoryManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -326,7 +335,7 @@
       <Filter>Externals\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="gameObjectManager.h">
-      <Filter>GameEngine\GameObject\GameObjects\GameObjectManager</Filter>
+      <Filter>GameEngine\GameObject\GameObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="uiManager.h">
       <Filter>GameEngine\UserInterface\UIManager</Filter>
@@ -371,7 +380,20 @@
     <ClInclude Include="physicsMeshObject.h">
       <Filter>GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh</Filter>
     </ClInclude>
-    <ClInclude Include="physicsPlaneObject.h" />
+    <ClInclude Include="unitySerializer.h" />
+    <ClInclude Include="physicsPlaneObject.h">
+      <Filter>GameEngine\GameObject\GameObjects\MeshObject\PhysicsMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="transform.h">
+      <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="uiDebugConsole.h">
+      <Filter>GameEngine\UserInterface\UIScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="debugLog.h" />
+    <ClInclude Include="eventAbstract.h" />
+    <ClInclude Include="eventGameObjectTransform.h" />
+    <ClInclude Include="eventHistoryManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="pixelShader.hlsl">

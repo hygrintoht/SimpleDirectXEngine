@@ -16,6 +16,7 @@ struct uiNames
 	const std::string INSPECTOR_SCREEN = "INSPECTOR_SCREEN";
 	const std::string HIERARCHY_SCREEN = "HIERARCHY_SCREEN";
 	const std::string TEST_SCREEN = "TEST_SCREEN";
+	const std::string DEBUG_WINDOW = "DEBUG_WINDOW";
 };
 
 class uiManager

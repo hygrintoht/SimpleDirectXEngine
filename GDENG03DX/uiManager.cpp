@@ -14,6 +14,7 @@
 #include "uiToolbar.h"
 #include "uiWorldOutliner.h"
 #include "swapChain.h"
+#include "uiDebugConsole.h"
 
 uiManager* uiManager::m_sharedInstance = nullptr;;
 
@@ -51,7 +52,9 @@ uiManager::uiManager(HWND windowHandle,swapChain* _swapChain)
 	auto* ui_world_outliner = new uiWorldOutliner(ui_names.HIERARCHY_SCREEN);
 	m_ui_list.push_back(ui_world_outliner);
 
-	
+	auto* ui_debug_window = new uiDebugConsole(ui_names.DEBUG_WINDOW);
+	m_ui_list.push_back(ui_debug_window);
+
 	// end of ui creation
 
 	// for each ui screen in ui list

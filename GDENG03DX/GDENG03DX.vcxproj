@@ -135,8 +135,11 @@
     <ClCompile Include="component.cpp" />
     <ClCompile Include="constantBuffer.cpp" />
     <ClCompile Include="cubeObject.cpp" />
+    <ClCompile Include="debugLog.cpp" />
     <ClCompile Include="deviceContext.cpp" />
     <ClCompile Include="engineTime.cpp" />
+    <ClCompile Include="eventGameObjectTransform.cpp" />
+    <ClCompile Include="eventHistoryManager.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="gameObjectManager.cpp" />
     <ClCompile Include="graphicsEngine.cpp" />
@@ -159,12 +162,14 @@
     <ClCompile Include="quadObject.cpp" />
     <ClCompile Include="serializer.cpp" />
     <ClCompile Include="swapChain.cpp" />
+    <ClCompile Include="uiDebugConsole.cpp" />
     <ClCompile Include="uiEngineProfiler.cpp" />
     <ClCompile Include="uiInspector.cpp" />
     <ClCompile Include="uiManager.cpp" />
     <ClCompile Include="uiTestScreen.cpp" />
     <ClCompile Include="uiToolbar.cpp" />
     <ClCompile Include="uiWorldOutliner.cpp" />
+    <ClCompile Include="unitySerializer.cpp" />
     <ClCompile Include="vertexBuffer.cpp" />
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="window.cpp" />
@@ -175,8 +180,12 @@
     <ClInclude Include="component.h" />
     <ClInclude Include="constantBuffer.h" />
     <ClInclude Include="cubeObject.h" />
+    <ClInclude Include="debugLog.h" />
     <ClInclude Include="deviceContext.h" />
     <ClInclude Include="engineTime.h" />
+    <ClInclude Include="eventAbstract.h" />
+    <ClInclude Include="eventGameObjectTransform.h" />
+    <ClInclude Include="eventHistoryManager.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="gameObjectManager.h" />
     <ClInclude Include="graphicsEngine.h" />
@@ -205,6 +214,8 @@
     <ClInclude Include="serializer.h" />
     <ClInclude Include="swapChain.h" />
     <ClInclude Include="tinyobjloader\tiny_obj_loader.h" />
+    <ClInclude Include="transform.h" />
+    <ClInclude Include="uiDebugConsole.h" />
     <ClInclude Include="uiEngineProfiler.h" />
     <ClInclude Include="uiInspector.h" />
     <ClInclude Include="uiManager.h" />
@@ -212,6 +223,7 @@
     <ClInclude Include="uiTestScreen.h" />
     <ClInclude Include="uiToolbar.h" />
     <ClInclude Include="uiWorldOutliner.h" />
+    <ClInclude Include="unitySerializer.h" />
     <ClInclude Include="vector3.h" />
     <ClInclude Include="vector4.h" />
     <ClInclude Include="vertexBuffer.h" />

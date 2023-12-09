@@ -16,7 +16,7 @@ public:
 	};
 
 	component(std::string name, componentType type, gameObject* owner);
-	~component();
+	virtual ~component();
 
 	void attachOwner(gameObject* owner);
 	void detachOwner();

@@ -4,7 +4,9 @@
 class physicsPlaneObject : public meshObject
 {
 public:
-	physicsPlaneObject(std::string name, bool skipInit = false);
+	physicsPlaneObject(std::string name);
+	physicsPlaneObject(std::string name, vector3 position, vector3 scale, vector3 rotation);
+	physicsPlaneObject(std::string name, vector3 position, vector3 scale, quaternion rotation);
 	~physicsPlaneObject();
 
 	void update(matrix4x4 world_camera_temp, float top, float bottom, float right, float left) override;

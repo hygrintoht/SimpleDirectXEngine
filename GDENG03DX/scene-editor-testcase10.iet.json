@@ -3,55 +3,7 @@
 	[
 		{
 			"filename" : "cube.obj",
-			"name" : "createdCube2",
-			"transform" : 
-			[
-				1.0,
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				3.0,
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			],
-			"type" : 1
-		},
-		{
-			"filename" : "cube.obj",
-			"name" : "createdCube3",
-			"transform" : 
-			[
-				1.0,
-				0.0,
-				0.0,
-				-2.0,
-				0.0,
-				1.0,
-				0.0,
-				2.0,
-				0.0,
-				0.0,
-				1.0,
-				1.5,
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			],
-			"type" : 1
-		},
-		{
-			"filename" : "cube.obj",
-			"name" : "createdPhysicsPlane4",
+			"name" : "createdPhysicsPlane3",
 			"transform" : 
 			[
 				10.0,
@@ -66,6 +18,54 @@
 				0.0,
 				10.0,
 				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdCube4",
+			"transform" : 
+			[
+				1.0,
+				-0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				-0.0,
+				1.0,
+				-0.0,
+				0.0,
+				1.0,
+				3.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			],
+			"type" : 1
+		},
+		{
+			"filename" : "cube.obj",
+			"name" : "createdCube5",
+			"transform" : 
+			[
+				1.0,
+				0.0,
+				0.0,
+				-2.0,
+				0.0,
+				1.0,
+				0.0,
+				2.0,
+				0.0,
+				0.0,
+				1.0,
+				1.5,
 				0.0,
 				0.0,
 				0.0,

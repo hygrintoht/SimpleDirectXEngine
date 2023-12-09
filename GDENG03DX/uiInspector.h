@@ -19,5 +19,12 @@ private:
 	float m_rotation[3] = { 0 };
 	float m_scale[3] = { 1.0f, 1.0f, 1.0f };
 
+	//bool m_enter_pressed = false;
+	//int test = 0;
+	float m_massUpdate = 1000.0f;
+
+
+	bool m_was_manupulated = false;
+
 	std::string m_current_object_string = "";
 };

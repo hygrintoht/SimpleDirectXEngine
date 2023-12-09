@@ -3,6 +3,7 @@
 #include "Imgui/imgui.h"
 
 #include "engineTime.h"
+#include "eventHistoryManager.h"
 #include "gameObjectManager.h"
 #include "graphicsEngine.h"
 #include "meshObject.h"
@@ -11,6 +12,7 @@
 #include "physicsPlaneObject.h"
 #include "serializer.h"
 #include "uiManager.h"
+#include "unitySerializer.h"
 
 void uiToolbar::drawUI()
 {
@@ -33,9 +35,30 @@ void uiToolbar::drawUI()
 				gameObjectManager::get()->deleteAllObjects();
 				serializer::openScene();
 			}
+			if (ImGui::MenuItem("Save as Unity Json Format"))
+			{
+				unitySerializer::save();
+			}
+			if (ImGui::MenuItem("Load as Unity Json Format"))
+			{
+				gameObjectManager::get()->deleteAllObjects();
+				unitySerializer::open();
+			}
 			if (ImGui::MenuItem("Exit"))
 			{
-				exit(0); // kill program
+				exit(0);
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Edit"))
+		{
+			if (ImGui::MenuItem("Undo"))
+			{
+				eventHistoryManager::get()->undo();
+			}
+			if (ImGui::MenuItem("Redo"))
+			{
+				eventHistoryManager::get()->redo();
 			}
 			ImGui::EndMenu();
 		}
@@ -97,7 +120,7 @@ void uiToolbar::drawUI()
 			}
 			if (ImGui::MenuItem("create PhysicsCube"))
 			{
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 1; i++)
 				{
 					auto* physics_object = new physicsMeshObject("createdPhysicsCube" + std::to_string(objectCounter));
 					objectCounter++;
@@ -112,18 +135,30 @@ void uiToolbar::drawUI()
 					physics_object->loadVertexBuffer(shader_byte_code, size_shader);
 				}
 			}
+			if (ImGui::MenuItem("create PhysicsCubes"))
+			{
+				for (int i = 0; i < 5; i++)
+				{
+					vector3 position = vector3(randFNOneToOne() * 4.0f, randFNOneToOne() * 2 - 2.0f, randFNOneToOne() * 4.0f);
+					auto* physics_cube = new physicsMeshObject("createdPhysicsCube" + std::to_string(objectCounter), position, vector3(1.0f, 1.0f, 1.0f), vector3(0, 0, 0));
+
+					physicsComponent* component = (physicsComponent*)physics_cube->findComponentOfType(component::componentType::Physics, "PhysicsComponent");
+					component->setMass(1);
+
+					gameObjectManager::get()->addObject(physics_cube);
+
+					void* shader_byte_code = nullptr;
+					size_t size_shader = 0;
+
+					graphicsEngine::get()->getVertexShaderData(&shader_byte_code, &size_shader);
+
+					physics_cube->loadVertexBuffer(shader_byte_code, size_shader);
+				}
+			}
 			if (ImGui::MenuItem("create PhysicsPlane"))
 			{
 				auto* physics_object = new physicsPlaneObject("createdPhysicsPlane" + std::to_string(objectCounter));
 				objectCounter++;
-
-				//physics_object->m_transform.setTranslation(vector3(0.0f, -5.0f, 0.0f));
-				//physics_object->m_transform.setScale(vector3(5.0f, 1.0f, 5.0f));
-				//physicsComponent* component = (physicsComponent*)physics_object->findComponentOfType(component::componentType::Physics, "PlaneComponent");
-				//component->getRigidBody()->setType(BodyType::KINEMATIC);
-
-				//physics_object->setPosition(vector3(0.0f, -5.0f, 0.0f));
-				//physics_object->setScale(vector3(32.0f, 0.2f, 32.0f));
 
 				physicsComponent* component = (physicsComponent*)physics_object->findComponentOfType(component::componentType::Physics, "PhysicsComponent");
 				component->getRigidBody()->setType(BodyType::KINEMATIC);
@@ -164,6 +199,13 @@ void uiToolbar::drawUI()
 			{	// if first play
 				if(gameObjectManager::get()->getFirstPlay())
 					engineTime::get()->togglePause();
+			}
+			if (ImGui::MenuItem("Time Step"))
+			{
+				if(engineTime::get()->isPaused())
+				{	// time step
+					
+				}
 			}
 			ImGui::EndMenu();
 		}

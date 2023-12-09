@@ -1,11 +1,15 @@
 #include "gameObject.h"
 
+#include "iostream"
+
 #include "graphicsEngine.h"
 #include "vertexBuffer.h"
 #include "indexBuffer.h"
 #include "constantBuffer.h"
 #include "deviceContext.h"
-#include "iostream"
+
+#include "matrix4x4.h"
+#include "quaternion.h"
 
 gameObject::gameObject()
 {
@@ -48,6 +52,10 @@ void gameObject::update(matrix4x4 world_camera_temp, float top, float bottom, fl
 {
 }
 
+void gameObject::update(float deltaTime, matrix4x4 world_camera_temp, float top, float bottom, float right, float left)
+{
+}
+
 void gameObject::draw()
 {
 	graphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vertex_buffer);
@@ -80,6 +88,11 @@ gameObject::gameObjectType gameObject::getType()
 	return m_game_object_type;
 }
 
+gameObject::unityGameObjectType gameObject::getUnityType()
+{
+	return m_unity_game_object_type;
+}
+
 void gameObject::setPosition(vector3 position)
 {
 	m_transform.setTranslation(position);
@@ -93,7 +106,30 @@ void gameObject::setScale(vector3 scale)
 void gameObject::setRotation(vector3 rotation)
 {
 	m_transform.setRotation(rotation);
+	//quaternion temp = quaternion::fromRotationMatrix(m_transform); // get quaternion from current rotation matrix
+	//temp.rotateByEulerAngles(rotation); // rotate quaternion by euler angles ("add the rotation")
+	//m_transform = m_transform * temp.toRotationMatrix(); // add the rotation to the transform
 }
+
+void gameObject::setRotation(quaternion rotation)
+{
+	m_transform = m_transform * rotation.toRotationMatrix();
+}
+
+void gameObject::setMatrix(vector3 position, vector3 scale, quaternion rotation)
+{
+	matrix4x4 _position;
+	_position.identityMatrix();
+	_position.setTranslation(position);
+
+	matrix4x4 _scale;
+	_scale.setScale(scale);
+
+	matrix4x4 _rotation = rotation.toRotationMatrix();
+
+	m_transform = _scale * _rotation * _position;
+}
+
 
 void gameObject::attachComponent(component* component)
 {

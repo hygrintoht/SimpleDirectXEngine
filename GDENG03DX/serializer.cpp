@@ -177,19 +177,7 @@ void serializer::open(std::string filepath)
         {
         case gameObject::gameObjectType::none:
         {
-            /*
-            auto* game_object = new gameObject(objectName);
-            game_object->m_transform = objectTransform;
-
-            gameObjectManager::get()->addObject(game_object);
-
-            void* shader_byte_code = nullptr;
-            size_t size_shader = 0;
-
-            graphicsEngine::get()->getVertexShaderData(&shader_byte_code, &size_shader);
-
-            game_object->loadVertexBuffer(shader_byte_code, size_shader);
-            */
+			
             break;
         }
 

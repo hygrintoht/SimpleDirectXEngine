@@ -169,8 +169,6 @@ void appWindow::onUpdate()
 
 	//update
 
-	
-
 	RECT rect = this->getClientWindowRect(); // get window rect data
 	graphicsEngine::get()->getImmediateDeviceContext()->setViewPortSize(rect.right - rect.left, rect.bottom - rect.top); // update viewport
 

@@ -8,16 +8,19 @@
 meshObject::meshObject()
 {
 	m_game_object_type = mesh;
+	m_unity_game_object_type = cube_object;
 }
 
 meshObject::meshObject(std::string name) : gameObject(name)
 {
 	m_game_object_type = mesh;
+	m_unity_game_object_type = cube_object;
 }
 
 meshObject::meshObject(std::string name, std::string file_path) : gameObject(name)
 {
 	m_game_object_type = mesh;
+	m_unity_game_object_type = cube_object;
 	loadObjFileData(file_path);
 }
 

@@ -105,6 +105,11 @@ gameObject* gameObjectManager::getSelectedObject()
 	return m_selected_object;
 }
 
+void gameObjectManager::deselectObject()
+{
+	m_selected_object = nullptr;
+}
+
 void gameObjectManager::reloadScene()
 {
 	deleteAllObjects();

@@ -1,13 +1,40 @@
 #include "physicsPlaneObject.h"
 
 #include "physicsComponent.h"
+#include "quaternion.h"
 
-physicsPlaneObject::physicsPlaneObject(std::string name, bool skipInit) : meshObject(name, "cube.obj")
+physicsPlaneObject::physicsPlaneObject(std::string name) : meshObject(name, "cube.obj")
 {
-	setPosition(vector3(0.0f, -5.0f, 0.0f));
-	setScale(vector3(32.0f, 0.2f, 32.0f));
+	m_unity_game_object_type = physics_plane_object;
+	setPosition(vector3(0.0f, -10.0f, 0.0f));
+	setScale(vector3(10.0f, 0.2f, 10.0f));
 	changeAnimationType(-1);
-	//m_transform.setRotation(vector3(0.0f, 0.0f, 0.0f));
+
+	this->attachComponent(new physicsComponent("PhysicsComponent", this));
+
+	physicsComponent* component = (physicsComponent*)this->findComponentOfType(component::componentType::Physics, "PhysicsComponent");
+	component->getRigidBody()->setType(BodyType::KINEMATIC);
+}
+
+physicsPlaneObject::physicsPlaneObject(std::string name, vector3 position, vector3 scale, vector3 rotation) : meshObject(name, "cube.obj")
+{
+	m_unity_game_object_type = physics_plane_object;
+	setPosition(position);
+	setScale(scale);
+	//setRotation(rotation);
+	changeAnimationType(-1);
+	this->attachComponent(new physicsComponent("PhysicsComponent", this));
+
+	physicsComponent* component = (physicsComponent*)this->findComponentOfType(component::componentType::Physics, "PhysicsComponent");
+	component->getRigidBody()->setType(BodyType::KINEMATIC);
+}
+
+physicsPlaneObject::physicsPlaneObject(std::string name, vector3 position, vector3 scale, quaternion rotation) : meshObject(name, "cube.obj")
+{
+	m_unity_game_object_type = physics_plane_object;
+	this->setMatrix(position, scale, rotation);
+
+	changeAnimationType(-1);
 	this->attachComponent(new physicsComponent("PhysicsComponent", this));
 
 	physicsComponent* component = (physicsComponent*)this->findComponentOfType(component::componentType::Physics, "PhysicsComponent");
